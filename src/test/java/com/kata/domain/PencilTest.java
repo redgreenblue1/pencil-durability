@@ -23,9 +23,9 @@ public class PencilTest {
     }
 
     public void whenPencilWritesAgainItAppendToOldText() {
-        String firstText = "She sells sea shells";
+        String firstText = "fast";
         pencil.write(firstText);
-        String secondText = " down by the sea shore";
+        String secondText = " tiger";
         String writtenText = pencil.write(secondText);
         assertEquals(writtenText, firstText + secondText);
 
