@@ -3,10 +3,14 @@ package com.kata.domain;
 public class Pencil {
 
 
-    private String text = "";
+    private StringBuilder text;
+
+    public Pencil() {
+        text = new StringBuilder();
+    }
 
     public String write(String textToWrite) {
-        this.text += textToWrite;
-        return this.text;
+        text.append(textToWrite);
+        return text.toString();
     }
 }
