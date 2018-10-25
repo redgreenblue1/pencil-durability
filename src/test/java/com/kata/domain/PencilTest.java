@@ -64,5 +64,10 @@ public class PencilTest {
         assertEquals(durablePencil.getPointDurability(), INITIAL_DURABILITY);
     }
 
+    public void whenPencilIsCreatedItHasNonZeroDefaultDurabilityPointValue() {
+        Pencil defaultPencil = new Pencil();
+        assertEquals(defaultPencil.getPointDurability(), 500);
+    }
+
 
 }
