@@ -1,0 +1,43 @@
+plugins {
+    id 'java'
+    id "jacoco"
+}
+
+group 'com.kata'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+ext {
+    jacocoVersion = '0.8.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+test {
+    useTestNG() {
+        outputDirectory = file("build/test-results")
+        useDefaultListeners = true
+    }
+    testLogging {
+        exceptionFormat = 'full'
+    }
+}
+
+dependencies {
+    testCompile("org.testng:testng:6.14.3")
+}
+
+jacoco {
+    toolVersion = jacocoVersion
+}
+jacocoTestReport {
+    reports {
+        xml.enabled false
+        csv.enabled false
+    }
+}
+test.finalizedBy jacocoTestReport
+
