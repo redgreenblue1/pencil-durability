@@ -7,13 +7,14 @@ import static org.testng.Assert.*;
 
 @Test
 public class PencilTest {
+    public static final int INITIAL_DURABILITY = 50;
     private Pencil pencil;
     private Pencil durablePencil;
 
     @BeforeMethod
     public void setup() {
         this.pencil = new Pencil();
-        this.durablePencil = new Pencil(50);
+        this.durablePencil = new Pencil(INITIAL_DURABILITY);
     }
 
     public void whenPencilWritesATextItReturnsTheText() {
@@ -31,8 +32,8 @@ public class PencilTest {
     }
 
     public void whenPencilIsCreatedItCanHaveDurabilityPoint() {
-        Pencil durablePencil = new Pencil(50);
-        assertEquals(50, durablePencil.getPointDurability());
+        Pencil durablePencil = new Pencil(INITIAL_DURABILITY);
+        assertEquals(INITIAL_DURABILITY, durablePencil.getPointDurability());
     }
 
     public void whenDurablePencilWritesItAppendToOldText() {
@@ -45,7 +46,7 @@ public class PencilTest {
     }
 
     public void whenPencilWritesLowerCaseLetterThenDurabilityPointReducesByOne() {
-        Pencil durablePencil = new Pencil(50);
+        Pencil durablePencil = new Pencil(INITIAL_DURABILITY);
         durablePencil.write("m");
         assertEquals(durablePencil.getPointDurability(), 49);
     }
@@ -57,13 +58,13 @@ public class PencilTest {
 
     public void whenPencilWritesMultipleUpperCaseLettersThenDurabilityPointReduceByTwoForEachLetter() {
         durablePencil.write("CAT");
-        assertEquals(durablePencil.getPointDurability(), 50 - 6);
+        assertEquals(durablePencil.getPointDurability(), INITIAL_DURABILITY - 6);
     }
 
     public void whenPencilWritesSpacesThenDurabilityPointIsNotReduced() {
         //One space character
         durablePencil.write(" ");
-        assertEquals(durablePencil.getPointDurability(), 50);
+        assertEquals(durablePencil.getPointDurability(), INITIAL_DURABILITY);
     }
 
 
