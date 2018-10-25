@@ -60,5 +60,11 @@ public class PencilTest {
         assertEquals(durablePencil.getPointDurability(), 50 - 6);
     }
 
+    public void whenPencilWritesSpacesThenDurabilityPointIsNotReduced() {
+        //One space character
+        durablePencil.write(" ");
+        assertEquals(durablePencil.getPointDurability(), 50);
+    }
+
 
 }

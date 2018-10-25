@@ -21,7 +21,7 @@ public class Pencil {
         for (char inputCharacter : inputTextCharacters) {
             if (Character.isLowerCase(inputCharacter)) {
                 durabilityPoint--;
-            } else {
+            } else if (Character.isUpperCase(inputCharacter)) {
                 durabilityPoint -= 2;
             }
         }
