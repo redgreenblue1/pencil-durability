@@ -7,7 +7,7 @@ import static org.testng.Assert.*;
 
 @Test
 public class PencilTest {
-    public static final int INITIAL_DURABILITY = 50;
+    private static final int INITIAL_DURABILITY = 10;
     private Pencil pencil;
     private Pencil durablePencil;
 
@@ -32,12 +32,10 @@ public class PencilTest {
     }
 
     public void whenPencilIsCreatedItCanHaveDurabilityPoint() {
-        Pencil durablePencil = new Pencil(INITIAL_DURABILITY);
         assertEquals(INITIAL_DURABILITY, durablePencil.getPointDurability());
     }
 
     public void whenDurablePencilWritesItAppendToOldText() {
-        Pencil durablePencil = new Pencil(100);
         String firstText = "She sells sea shells";
         durablePencil.write(firstText);
         String secondText = " down by the sea shore";
@@ -46,14 +44,13 @@ public class PencilTest {
     }
 
     public void whenPencilWritesLowerCaseLetterThenDurabilityPointReducesByOne() {
-        Pencil durablePencil = new Pencil(INITIAL_DURABILITY);
         durablePencil.write("m");
-        assertEquals(durablePencil.getPointDurability(), 49);
+        assertEquals(durablePencil.getPointDurability(), INITIAL_DURABILITY - 1);
     }
 
     public void whenPencilWritesMultipleLowerCaseLettersThenDurabilityPointReduceByOneForEachLetter() {
         durablePencil.write("cat");
-        assertEquals(durablePencil.getPointDurability(), 47);
+        assertEquals(durablePencil.getPointDurability(), INITIAL_DURABILITY - 3);
     }
 
     public void whenPencilWritesMultipleUpperCaseLettersThenDurabilityPointReduceByTwoForEachLetter() {
