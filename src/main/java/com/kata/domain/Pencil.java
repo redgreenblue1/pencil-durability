@@ -21,6 +21,8 @@ public class Pencil {
         for (char inputCharacter : inputTextCharacters) {
             if (Character.isLowerCase(inputCharacter)) {
                 durabilityPoint--;
+            } else {
+                durabilityPoint -= 2;
             }
         }
         text.append(textToWrite);

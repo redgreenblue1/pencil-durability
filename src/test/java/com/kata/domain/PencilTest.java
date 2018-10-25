@@ -55,5 +55,10 @@ public class PencilTest {
         assertEquals(durablePencil.getPointDurability(), 47);
     }
 
+    public void whenPencilWritesMultipleUpperCaseLettersThenDurabilityPointReduceByTwoForEachLetter() {
+        durablePencil.write("CAT");
+        assertEquals(durablePencil.getPointDurability(), 50 - 6);
+    }
+
 
 }
