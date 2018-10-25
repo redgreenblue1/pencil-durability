@@ -17,8 +17,11 @@ public class Pencil {
     }
 
     public String write(String textToWrite) {
-        if ("m".equals(textToWrite)) {
-            durabilityPoint--;
+        char[] inputTextCharacters = textToWrite.toCharArray();
+        for (char inputCharacter : inputTextCharacters) {
+            if (Character.isLowerCase(inputCharacter)) {
+                durabilityPoint--;
+            }
         }
         text.append(textToWrite);
         return text.toString();
