@@ -17,6 +17,9 @@ public class Pencil {
     }
 
     public String write(String textToWrite) {
+        if ("m".equals(textToWrite)) {
+            durabilityPoint--;
+        }
         text.append(textToWrite);
         return text.toString();
     }

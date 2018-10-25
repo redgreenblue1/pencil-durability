@@ -42,5 +42,11 @@ public class PencilTest {
         assertEquals(writtenText, firstText + secondText);
     }
 
+    public void whenPencilWritesLowerCaseLetterThenDurabilityPointReducesByOne() {
+        Pencil durablePencil = new Pencil(50);
+        durablePencil.write("m");
+        assertEquals(durablePencil.getPointDurability(), 49);
+    }
+
 
 }
