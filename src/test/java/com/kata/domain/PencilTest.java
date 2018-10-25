@@ -32,4 +32,15 @@ public class PencilTest {
         Pencil durablePencil = new Pencil(50);
         assertEquals(50, durablePencil.getPointDurability());
     }
+
+    public void whenDurablePencilWritesItAppendToOldText() {
+        Pencil durablePencil = new Pencil(100);
+        String firstText = "She sells sea shells";
+        durablePencil.write(firstText);
+        String secondText = " down by the sea shore";
+        String writtenText = durablePencil.write(secondText);
+        assertEquals(writtenText, firstText + secondText);
+    }
+
+
 }

@@ -11,6 +11,7 @@ public class Pencil {
     }
 
     public Pencil(int durabilityPoint) {
+        this();
         this.durabilityPoint = durabilityPoint;
 
     }
