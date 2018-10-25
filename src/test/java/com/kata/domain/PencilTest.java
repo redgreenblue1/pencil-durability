@@ -8,10 +8,12 @@ import static org.testng.Assert.*;
 @Test
 public class PencilTest {
     private Pencil pencil;
+    private Pencil durablePencil;
 
     @BeforeMethod
     public void setup() {
         this.pencil = new Pencil();
+        this.durablePencil = new Pencil(50);
     }
 
     public void whenPencilWritesATextItReturnsTheText() {
@@ -49,7 +51,6 @@ public class PencilTest {
     }
 
     public void whenPencilWritesMultipleLowerCaseLettersThenDurabilityPointReduceByOneForEachLetter() {
-        Pencil durablePencil = new Pencil(50);
         durablePencil.write("cat");
         assertEquals(durablePencil.getPointDurability(), 47);
     }
