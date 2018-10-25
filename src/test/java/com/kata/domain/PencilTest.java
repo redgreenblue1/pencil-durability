@@ -36,9 +36,9 @@ public class PencilTest {
     }
 
     public void whenDurablePencilWritesItAppendToOldText() {
-        String firstText = "She sells sea shells";
+        String firstText = "blue";
         durablePencil.write(firstText);
-        String secondText = " down by the sea shore";
+        String secondText = " Sky";
         String writtenText = durablePencil.write(secondText);
         assertEquals(writtenText, firstText + secondText);
     }
