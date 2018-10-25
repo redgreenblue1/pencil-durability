@@ -27,4 +27,9 @@ public class PencilTest {
         assertEquals(writtenText, firstText + secondText);
 
     }
+
+    public void whenPencilIsCreatedItCanHaveDurabilityPoint() {
+        Pencil durablePencil = new Pencil(50);
+        assertEquals(50, durablePencil.getPointDurability());
+    }
 }
