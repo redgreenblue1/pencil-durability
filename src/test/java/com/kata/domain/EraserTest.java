@@ -39,4 +39,10 @@ public class EraserTest {
         assertEquals(eraser.getDurability(), oldDurability - 3);
     }
 
+    public void whenEraserErasesItSkipCharactersWhenDurabilityIsZero() {
+        Eraser eraser = new Eraser(0);
+        String updatedText = eraser.erase("abc", "bc");
+        assertEquals(updatedText, "abc");
+    }
+
 }
