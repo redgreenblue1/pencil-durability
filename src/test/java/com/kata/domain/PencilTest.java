@@ -90,4 +90,8 @@ public class PencilTest {
         assertEquals(pencil.getLength(), 3);
     }
 
+    public void whenPencilCreatedItShouldHaveDefaultLengthIfNotSpecified() {
+        assertEquals(defaultPencil.getLength(), 4);
+    }
+
 }

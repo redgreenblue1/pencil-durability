@@ -10,6 +10,7 @@ public class Pencil {
 
     public Pencil() {
         this.durabilityPoint = 500;
+        this.length = 4;
         text = new StringBuilder();
     }
 
