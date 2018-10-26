@@ -111,4 +111,11 @@ public class PencilTest {
         assertEquals(durablePencil.getLength(), oldLength - 1);
     }
 
+    public void whenPencilIsSharpenedItRegainsInitialDurability() {
+        int oldDurability = durablePencil.getInitialDurability();
+        durablePencil.write("blue");
+        durablePencil.sharpen();
+        assertEquals(durablePencil.getPointDurability(), oldDurability);
+    }
+
 }

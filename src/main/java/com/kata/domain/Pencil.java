@@ -73,5 +73,6 @@ public class Pencil {
 
     public void sharpen() {
         this.length--;
+        this.durabilityPoint = getInitialDurability();
     }
 }
