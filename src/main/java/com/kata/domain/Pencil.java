@@ -6,6 +6,7 @@ public class Pencil {
     public static final String ONE_SPACE = " ";
     private int durabilityPoint;
     private StringBuilder text;
+    private int length;
 
     public Pencil() {
         this.durabilityPoint = 500;
@@ -16,6 +17,13 @@ public class Pencil {
         this();
         this.durabilityPoint = durabilityPoint;
 
+    }
+
+    public static Pencil createWithDurabilityAndLength(int durability, int length) {
+        Pencil pencil = new Pencil();
+        pencil.durabilityPoint = durability;
+        pencil.length = length;
+        return pencil;
     }
 
     public String write(String textToWrite) {
@@ -47,5 +55,9 @@ public class Pencil {
 
     public int getPointDurability() {
         return durabilityPoint;
+    }
+
+    public int getLength() {
+        return this.length;
     }
 }

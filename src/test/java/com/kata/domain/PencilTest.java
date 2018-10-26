@@ -84,4 +84,10 @@ public class PencilTest {
         assertEquals(durablePencil.getPointDurability(), oldDurability);
     }
 
+    public void whenPencilCreatedItShouldAcceptDurabilityAndLength() {
+        Pencil pencil = Pencil.createWithDurabilityAndLength(15, 3);
+        assertEquals(pencil.getPointDurability(), 15);
+        assertEquals(pencil.getLength(), 3);
+    }
+
 }
