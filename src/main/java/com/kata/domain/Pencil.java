@@ -3,6 +3,7 @@ package com.kata.domain;
 public class Pencil {
 
 
+    public static final String ONE_SPACE = " ";
     private int durabilityPoint;
     private StringBuilder text;
 
@@ -28,7 +29,7 @@ public class Pencil {
             if (getPointDurability() >= 0) {
                 text.append(inputCharacter);
             } else {
-                text.append(" ");
+                text.append(ONE_SPACE);
             }
         }
         return text.toString();
