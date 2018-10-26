@@ -25,8 +25,12 @@ public class Pencil {
             } else if (Character.isUpperCase(inputCharacter)) {
                 durabilityPoint -= 2;
             }
+            if (getPointDurability() > 0) {
+                text.append(inputCharacter);
+            } else {
+                text.append(" ");
+            }
         }
-        text.append(textToWrite);
         return text.toString();
     }
 

@@ -69,5 +69,8 @@ public class PencilTest {
         assertEquals(defaultPencil.getPointDurability(), 500);
     }
 
+    public void whenPencilDurabilityIsNotSufficientItWriteSpacesForEachNextCharacter() {
+        assertEquals(durablePencil.write("aABC DEFG"), "aABC D   ");
+    }
 
 }
