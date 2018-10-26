@@ -9,6 +9,7 @@ import static org.testng.Assert.*;
 @Test
 public class PencilTest {
     private static final int INITIAL_DURABILITY = 10;
+    public static final String BLUE_VALUE = "blue";
     private Pencil defaultPencil;
     private Pencil durablePencil;
 
@@ -37,7 +38,7 @@ public class PencilTest {
     }
 
     public void whenDurablePencilWritesItAppendToOldText() {
-        String firstText = "blue";
+        String firstText = BLUE_VALUE;
         durablePencil.write(firstText);
         String secondText = " Sky";
         String writtenText = durablePencil.write(secondText);
@@ -79,7 +80,7 @@ public class PencilTest {
     }
 
     public void whenPencilWritesNullItShouldNotWriteAnything() {
-        String oldText = durablePencil.write("blue");
+        String oldText = durablePencil.write(BLUE_VALUE);
         int oldDurability = durablePencil.getPointDurability();
         assertEquals(durablePencil.write(null), oldText);
         assertEquals(durablePencil.getPointDurability(), oldDurability);
@@ -101,7 +102,7 @@ public class PencilTest {
 
     public void whenPencilDurabilityChangeItShouldNotChangeItsInitialDurability() {
         assertEquals(durablePencil.getInitialDurability(), INITIAL_DURABILITY);
-        durablePencil.write("blue");
+        durablePencil.write(BLUE_VALUE);
         assertEquals(durablePencil.getInitialDurability(), INITIAL_DURABILITY);
     }
 
@@ -113,7 +114,7 @@ public class PencilTest {
 
     public void whenPencilIsSharpenedItRegainsInitialDurability() {
         int oldDurability = durablePencil.getInitialDurability();
-        durablePencil.write("blue");
+        durablePencil.write(BLUE_VALUE);
         durablePencil.sharpen();
         assertEquals(durablePencil.getPointDurability(), oldDurability);
     }
@@ -122,7 +123,7 @@ public class PencilTest {
         Pencil pencil = Pencil.createWithDurabilityAndLength(50, 2);
         pencil.sharpen();
         pencil.sharpen();
-        pencil.write("blue");
+        pencil.write(BLUE_VALUE);
         pencil.sharpen();
         assertTrue(pencil.getPointDurability() < 50);
     }
