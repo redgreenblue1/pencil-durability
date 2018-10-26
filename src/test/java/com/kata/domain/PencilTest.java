@@ -73,7 +73,7 @@ public class PencilTest {
         assertEquals(durablePencil.write("aABC DEFG"), "aABC D   ");
     }
 
-    public void whenPencilDuribilityIsZeroItWritesSpacesForEachNextCharacter() {
+    public void whenPencilDurabilityIsZeroItWritesSpacesForEachNextCharacter() {
         assertEquals(durablePencil.write("ABCDEF"), "ABCDE ");
     }
 
