@@ -16,10 +16,8 @@ public class Pencil {
         text = new StringBuilder();
     }
 
-    public Pencil(int durabilityPoint) {
-        this();
-        this.durabilityPoint = durabilityPoint;
-
+    public static Pencil createWithDurability(int durabilityPoint) {
+        return createWithDurabilityAndLength(durabilityPoint, DEFAULT_LENGTH);
     }
 
     public static Pencil createWithDurabilityAndLength(int durability, int length) {

@@ -15,7 +15,7 @@ public class PencilTest {
     @BeforeMethod
     public void setup() {
         this.defaultPencil = new Pencil();
-        this.durablePencil = new Pencil(INITIAL_DURABILITY);
+        this.durablePencil = Pencil.createWithDurability(INITIAL_DURABILITY);
     }
 
     public void whenPencilWritesATextItReturnsTheText() {
