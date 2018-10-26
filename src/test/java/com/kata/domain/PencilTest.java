@@ -14,7 +14,7 @@ public class PencilTest {
 
     @BeforeMethod
     public void setup() {
-        this.defaultPencil = new Pencil();
+        this.defaultPencil = Pencil.createDefault();
         this.durablePencil = Pencil.createWithDurability(INITIAL_DURABILITY);
     }
 
@@ -66,7 +66,7 @@ public class PencilTest {
     }
 
     public void whenPencilIsCreatedItHasNonZeroDefaultDurabilityPointValue() {
-        Pencil defaultPencil = new Pencil();
+        Pencil defaultPencil = Pencil.createDefault();
         assertEquals(defaultPencil.getPointDurability(), 500);
     }
 

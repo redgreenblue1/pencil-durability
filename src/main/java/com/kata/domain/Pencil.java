@@ -10,10 +10,12 @@ public class Pencil {
     private StringBuilder text;
     private int length;
 
-    public Pencil() {
-        this.durabilityPoint = DEFAULT_DURABILITY_POINT;
-        this.length = DEFAULT_LENGTH;
-        text = new StringBuilder();
+    private Pencil() {
+        // elect to use builders instead
+    }
+
+    public static Pencil createDefault() {
+        return createWithDurability(DEFAULT_DURABILITY_POINT);
     }
 
     public static Pencil createWithDurability(int durabilityPoint) {
@@ -24,6 +26,7 @@ public class Pencil {
         Pencil pencil = new Pencil();
         pencil.durabilityPoint = durability;
         pencil.length = length;
+        pencil.text = new StringBuilder();
         return pencil;
     }
 
