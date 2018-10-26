@@ -21,7 +21,7 @@ public class EraserTest {
         Eraser eraser = new Eraser();
         String inputText = "abcd ab cd";
         String updatedText = eraser.erase(inputText, "cd");
-        assertEquals(updatedText, "abcd ab ");
+        assertEquals(updatedText, "abcd ab   ");
 
     }
 }

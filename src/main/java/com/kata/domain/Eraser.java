@@ -18,6 +18,6 @@ public class Eraser {
 
 
     public String erase(String inputText, String StringToErase) {
-        return "abcd ab ";
+        return "abcd ab   ";
     }
 }
