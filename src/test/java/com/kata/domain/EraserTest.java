@@ -30,4 +30,13 @@ public class EraserTest {
         String inputText = "abcd ab ab";
         assertEquals(eraser.erase(inputText, "ab"), "abcd ab   ");
     }
+
+    public void whenEraserEraseItsDurabilityReduceByOneForEachNoneWhiteSpaceCharacter() {
+        Eraser eraser = new Eraser();
+        String inputText = "abcd eFg";
+        int oldDurability = eraser.getDurability();
+        eraser.erase(inputText, " eFg");
+        assertEquals(eraser.getDurability(), oldDurability - 3);
+    }
+
 }

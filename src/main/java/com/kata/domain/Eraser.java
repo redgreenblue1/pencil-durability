@@ -21,6 +21,9 @@ public class Eraser {
         int lastIndexOfTextToEars = inputText.lastIndexOf(textToErase);
         char[] inputTextCharacters = inputText.toCharArray();
         for (int i = lastIndexOfTextToEars; i < lastIndexOfTextToEars + textToErase.length(); i++) {
+            if (!Character.isWhitespace(inputTextCharacters[i])) {
+                this.durability--;
+            }
             inputTextCharacters[i] = ' ';
         }
         return String.copyValueOf(inputTextCharacters);
