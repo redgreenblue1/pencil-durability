@@ -16,4 +16,12 @@ public class EraserTest {
         Eraser eraser = new Eraser(10);
         assertEquals(eraser.getDurability(), 10);
     }
+
+    public void whenEraserProvidedWithTextItCanEraseWords() {
+        Eraser eraser = new Eraser();
+        String inputText = "abcd ab cd";
+        String updatedText = eraser.erase(inputText, "cd");
+        assertEquals(updatedText, "abcd ab ");
+
+    }
 }
