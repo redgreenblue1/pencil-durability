@@ -64,4 +64,8 @@ public class Pencil {
     public int getLength() {
         return this.length;
     }
+
+    public int getInitialDurability() {
+        return this.durabilityPoint;
+    }
 }

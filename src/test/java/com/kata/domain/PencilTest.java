@@ -95,4 +95,8 @@ public class PencilTest {
         assertEquals(defaultPencil.getLength(), DEFAULT_LENGTH);
     }
 
+    public void whenPencilAskedToReturnInitialDurabilityItShouldReturnIt() {
+        assertEquals(durablePencil.getInitialDurability(), INITIAL_DURABILITY);
+    }
+
 }
