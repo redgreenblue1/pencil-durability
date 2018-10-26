@@ -17,7 +17,12 @@ public class Eraser {
     }
 
 
-    public String erase(String inputText, String StringToErase) {
-        return "abcd ab   ";
+    public String erase(String inputText, String textToErase) {
+        int lastIndexOfTextToEars = inputText.lastIndexOf(textToErase);
+        char[] inputTextCharacters = inputText.toCharArray();
+        for (int i = lastIndexOfTextToEars; i < lastIndexOfTextToEars + textToErase.length(); i++) {
+            inputTextCharacters[i] = ' ';
+        }
+        return String.copyValueOf(inputTextCharacters);
     }
 }

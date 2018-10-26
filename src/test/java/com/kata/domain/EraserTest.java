@@ -24,4 +24,10 @@ public class EraserTest {
         assertEquals(updatedText, "abcd ab   ");
 
     }
+
+    public void whenEraserProvedWithTextItEraseTheLastOccurrence() {
+        Eraser eraser = new Eraser();
+        String inputText = "abcd ab ab";
+        assertEquals(eraser.erase(inputText, "ab"), "abcd ab   ");
+    }
 }
