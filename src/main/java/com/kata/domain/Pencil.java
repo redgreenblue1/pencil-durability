@@ -9,6 +9,7 @@ public class Pencil {
     private int durabilityPoint;
     private StringBuilder text;
     private int length;
+    private int initialDurability;
 
     private Pencil() {
         // elect to use builders instead
@@ -25,6 +26,7 @@ public class Pencil {
     public static Pencil createWithDurabilityAndLength(int durability, int length) {
         Pencil pencil = new Pencil();
         pencil.durabilityPoint = durability;
+        pencil.initialDurability = durability;
         pencil.length = length;
         pencil.text = new StringBuilder();
         return pencil;
@@ -66,6 +68,6 @@ public class Pencil {
     }
 
     public int getInitialDurability() {
-        return this.durabilityPoint;
+        return this.initialDurability;
     }
 }

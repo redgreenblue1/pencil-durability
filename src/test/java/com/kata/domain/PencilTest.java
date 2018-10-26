@@ -99,4 +99,10 @@ public class PencilTest {
         assertEquals(durablePencil.getInitialDurability(), INITIAL_DURABILITY);
     }
 
+    public void whenPencilDurabilityChangeItShouldNotChangeItsInitialDurability() {
+        assertEquals(durablePencil.getInitialDurability(), INITIAL_DURABILITY);
+        durablePencil.write("blue");
+        assertEquals(durablePencil.getInitialDurability(), INITIAL_DURABILITY);
+    }
+
 }
