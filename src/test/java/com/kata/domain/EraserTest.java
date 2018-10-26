@@ -45,4 +45,10 @@ public class EraserTest {
         assertEquals(updatedText, "abc");
     }
 
+    public void whenEraserErasesItEraseFromRightToLeft() {
+        Eraser eraser = new Eraser(2);
+        String updatedText = eraser.erase("abcde", "cde");
+        assertEquals(updatedText, "abc  ");
+    }
+
 }
