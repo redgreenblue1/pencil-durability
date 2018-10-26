@@ -19,17 +19,19 @@ public class Pencil {
     }
 
     public String write(String textToWrite) {
-        char[] inputTextCharacters = textToWrite.toCharArray();
-        for (char inputCharacter : inputTextCharacters) {
-            if (Character.isLowerCase(inputCharacter)) {
-                durabilityPoint--;
-            } else if (Character.isUpperCase(inputCharacter)) {
-                durabilityPoint -= 2;
-            }
-            if (getPointDurability() >= 0) {
-                text.append(inputCharacter);
-            } else {
-                text.append(ONE_SPACE);
+        if (textToWrite != null) {
+            char[] inputTextCharacters = textToWrite.toCharArray();
+            for (char inputCharacter : inputTextCharacters) {
+                if (Character.isLowerCase(inputCharacter)) {
+                    durabilityPoint--;
+                } else if (Character.isUpperCase(inputCharacter)) {
+                    durabilityPoint -= 2;
+                }
+                if (getPointDurability() >= 0) {
+                    text.append(inputCharacter);
+                } else {
+                    text.append(ONE_SPACE);
+                }
             }
         }
         return text.toString();

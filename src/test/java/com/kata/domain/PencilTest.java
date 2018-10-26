@@ -77,4 +77,11 @@ public class PencilTest {
         assertEquals(durablePencil.write("ABCDEF"), "ABCDE ");
     }
 
+    public void whenPencilWritesNullItShouldNotWriteAnything() {
+        String oldText = durablePencil.write("blue");
+        int oldDurability = durablePencil.getPointDurability();
+        assertEquals(durablePencil.write(null), oldText);
+        assertEquals(durablePencil.getPointDurability(), oldDurability);
+    }
+
 }
