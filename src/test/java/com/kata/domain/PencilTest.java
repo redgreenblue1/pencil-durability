@@ -8,25 +8,25 @@ import static org.testng.Assert.*;
 @Test
 public class PencilTest {
     private static final int INITIAL_DURABILITY = 10;
-    private Pencil pencil;
+    private Pencil defaultPencil;
     private Pencil durablePencil;
 
     @BeforeMethod
     public void setup() {
-        this.pencil = new Pencil();
+        this.defaultPencil = new Pencil();
         this.durablePencil = new Pencil(INITIAL_DURABILITY);
     }
 
     public void whenPencilWritesATextItReturnsTheText() {
-        String writtenText = pencil.write("She sells sea shells");
+        String writtenText = defaultPencil.write("She sells sea shells");
         assertEquals(writtenText, "She sells sea shells");
     }
 
     public void whenPencilWritesAgainItAppendToOldText() {
         String firstText = "fast";
-        pencil.write(firstText);
+        defaultPencil.write(firstText);
         String secondText = " tiger";
-        String writtenText = pencil.write(secondText);
+        String writtenText = defaultPencil.write(secondText);
         assertEquals(writtenText, firstText + secondText);
 
     }
