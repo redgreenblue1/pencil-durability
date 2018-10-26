@@ -131,7 +131,7 @@ public class PencilTest {
     public void whenPencilCreatedItShouldHaveEraser() {
         Eraser eraser = defaultPencil.getEraser();
         assertNotNull(eraser);
-
     }
+
 
 }
