@@ -3,6 +3,7 @@ package com.kata.domain;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static com.kata.domain.Pencil.DEFAULT_LENGTH;
 import static org.testng.Assert.*;
 
 @Test
@@ -91,7 +92,7 @@ public class PencilTest {
     }
 
     public void whenPencilCreatedItShouldHaveDefaultLengthIfNotSpecified() {
-        assertEquals(defaultPencil.getLength(), 4);
+        assertEquals(defaultPencil.getLength(), DEFAULT_LENGTH);
     }
 
 }

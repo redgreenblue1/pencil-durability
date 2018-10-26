@@ -4,13 +4,15 @@ public class Pencil {
 
 
     public static final String ONE_SPACE = " ";
+    public static final int DEFAULT_DURABILITY_POINT = 500;
+    public static final int DEFAULT_LENGTH = 4;
     private int durabilityPoint;
     private StringBuilder text;
     private int length;
 
     public Pencil() {
-        this.durabilityPoint = 500;
-        this.length = 4;
+        this.durabilityPoint = DEFAULT_DURABILITY_POINT;
+        this.length = DEFAULT_LENGTH;
         text = new StringBuilder();
     }
 
