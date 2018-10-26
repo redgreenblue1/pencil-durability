@@ -78,4 +78,8 @@ public class Pencil {
         }
 
     }
+
+    public Eraser getEraser() {
+        return new Eraser();
+    }
 }

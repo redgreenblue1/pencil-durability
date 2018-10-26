@@ -128,4 +128,10 @@ public class PencilTest {
         assertTrue(pencil.getPointDurability() < 50);
     }
 
+    public void whenPencilCreatedItShouldHaveEraser() {
+        Eraser eraser = defaultPencil.getEraser();
+        assertNotNull(eraser);
+
+    }
+
 }
