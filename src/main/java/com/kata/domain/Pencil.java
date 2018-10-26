@@ -70,4 +70,8 @@ public class Pencil {
     public int getInitialDurability() {
         return this.initialDurability;
     }
+
+    public void sharpen() {
+        this.length--;
+    }
 }
