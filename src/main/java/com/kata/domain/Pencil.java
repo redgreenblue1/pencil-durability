@@ -10,6 +10,7 @@ public class Pencil {
     private StringBuilder text;
     private int length;
     private int initialDurability;
+    private Eraser eraser;
 
     private Pencil() {
         // elect to use builders instead
@@ -28,6 +29,7 @@ public class Pencil {
         pencil.durabilityPoint = durability;
         pencil.initialDurability = durability;
         pencil.length = length;
+        pencil.eraser = new Eraser();
         pencil.text = new StringBuilder();
         return pencil;
     }
@@ -80,6 +82,10 @@ public class Pencil {
     }
 
     public Eraser getEraser() {
-        return new Eraser();
+        return this.eraser;
+    }
+
+    public void setEraser(Eraser eraser) {
+        this.eraser = eraser;
     }
 }

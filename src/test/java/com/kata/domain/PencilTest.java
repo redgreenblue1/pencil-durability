@@ -133,5 +133,13 @@ public class PencilTest {
         assertNotNull(eraser);
     }
 
+    public void whenPencilAskedToSetEraserItCanReturnThatEraser() {
+        int eraserDefaultDurability = defaultPencil.getEraser().getDurability();
+        int eraserNewDurability = eraserDefaultDurability + 10;
+        Eraser newEraser = new Eraser(eraserNewDurability);
+        defaultPencil.setEraser(newEraser);
+        assertEquals(defaultPencil.getEraser().getDurability(), eraserNewDurability);
+    }
+
 
 }
