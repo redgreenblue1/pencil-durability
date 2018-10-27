@@ -150,5 +150,10 @@ public class PencilTest {
         assertNotNull(defaultPencil.getPage());
     }
 
+    public void whenPencilWritersItWriteToItsPage() {
+        String writtenText = defaultPencil.write(BLUE_VALUE);
+        assertEquals(defaultPencil.getPage().getTextContents(), writtenText);
+    }
+
 
 }

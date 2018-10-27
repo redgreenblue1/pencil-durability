@@ -3,11 +3,11 @@ package com.kata.domain;
 public class Pencil {
 
 
-    public static final String ONE_SPACE = " ";
+    public static final char ONE_SPACE = ' ';
     public static final int DEFAULT_DURABILITY_POINT = 500;
     public static final int DEFAULT_LENGTH = 4;
     private int durabilityPoint;
-    private StringBuilder text;
+    private Page page;
     private int length;
     private int initialDurability;
     private Eraser eraser;
@@ -26,11 +26,11 @@ public class Pencil {
 
     public static Pencil createWithDurabilityAndLength(int durability, int length) {
         Pencil pencil = new Pencil();
+        pencil.page = new Page();
         pencil.durabilityPoint = durability;
         pencil.initialDurability = durability;
         pencil.length = length;
         pencil.eraser = new Eraser();
-        pencil.text = new StringBuilder();
         return pencil;
     }
 
@@ -42,7 +42,7 @@ public class Pencil {
                 appendText(inputCharacter);
             }
         }
-        return text.toString();
+        return page.getTextContents();
     }
 
     protected void adjustDurability(char inputCharacter) {
@@ -55,9 +55,9 @@ public class Pencil {
 
     protected void appendText(char inputCharacter) {
         if (getPointDurability() >= 0) {
-            text.append(inputCharacter);
+            page.append(inputCharacter);
         } else {
-            text.append(ONE_SPACE);
+            page.append(ONE_SPACE);
         }
     }
 
@@ -90,10 +90,10 @@ public class Pencil {
     }
 
     public String erase(String textToErase) {
-        return getEraser().erase(text.toString(), textToErase);
+        return getEraser().erase(page.getTextContents(), textToErase);
     }
 
     public Page getPage() {
-        return new Page();
+        return this.page;
     }
 }
