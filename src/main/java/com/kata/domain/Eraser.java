@@ -23,6 +23,7 @@ public class Eraser {
 
     public String erase(String inputText, String textToErase) {
         checkArgument(inputText != null, "Input Text Can't be null");
+        checkArgument(textToErase != null);
         int lastIndexOfTextToErase = inputText.lastIndexOf(textToErase);
         char[] inputTextCharacters = inputText.toCharArray();
         int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;

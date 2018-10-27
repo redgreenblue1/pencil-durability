@@ -60,4 +60,8 @@ public class EraserTest {
         defalutEraser.erase(null, "22");
     }
 
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void whenEraserEraseNullTextItReturnsException() {
+        defalutEraser.erase("abc", null);
+    }
 }
