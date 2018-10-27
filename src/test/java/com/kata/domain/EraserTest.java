@@ -8,15 +8,15 @@ import static org.testng.Assert.assertTrue;
 
 @Test
 public class EraserTest {
-    private Eraser defalutEraser;
+    private Eraser defaultEraser;
 
     @BeforeMethod
     public void setup() {
-        defalutEraser = new Eraser();
+        defaultEraser = new Eraser();
     }
 
     public void whenEraserCreatedItHasPositiveDurability() {
-        assertTrue(defalutEraser.getDurability() > 0);
+        assertTrue(defaultEraser.getDurability() > 0);
     }
 
     public void whenEraserCreateItCanAcceptDurability() {
@@ -26,21 +26,21 @@ public class EraserTest {
 
     public void whenEraserProvidedWithTextItCanEraseWords() {
         String inputText = "abcd ab cd";
-        String updatedText = defalutEraser.erase(new Page(inputText), "cd");
+        String updatedText = defaultEraser.erase(new Page(inputText), "cd");
         assertEquals(updatedText, "abcd ab   ");
 
     }
 
     public void whenEraserProvedWithTextItEraseTheLastOccurrence() {
         String inputText = "abcd ab ab";
-        assertEquals(defalutEraser.erase(new Page(inputText), "ab"), "abcd ab   ");
+        assertEquals(defaultEraser.erase(new Page(inputText), "ab"), "abcd ab   ");
     }
 
     public void whenEraserEraseItsDurabilityReduceByOneForEachNoneWhiteSpaceCharacter() {
         String inputText = "abcd eFg";
-        int oldDurability = defalutEraser.getDurability();
-        defalutEraser.erase(new Page(inputText), " eFg");
-        assertEquals(defalutEraser.getDurability(), oldDurability - 3);
+        int oldDurability = defaultEraser.getDurability();
+        defaultEraser.erase(new Page(inputText), " eFg");
+        assertEquals(defaultEraser.getDurability(), oldDurability - 3);
     }
 
     public void whenEraserErasesItSkipCharactersWhenDurabilityIsZero() {
@@ -57,11 +57,11 @@ public class EraserTest {
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void whenEraserEraseFromNullTextItReturnsException() {
-        defalutEraser.erase(null, "22");
+        defaultEraser.erase(null, "22");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void whenEraserEraseNullTextItReturnsException() {
-        defalutEraser.erase(new Page("abc"), null);
+        defaultEraser.erase(new Page("abc"), null);
     }
 }
