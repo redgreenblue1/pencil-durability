@@ -22,8 +22,7 @@ public class Eraser {
 
 
     public String erase(String inputText, String textToErase) {
-        checkArgument(inputText != null, "Input Text Can't be null");
-        checkArgument(textToErase != null);
+        validateArguments(inputText, textToErase);
         int lastIndexOfTextToErase = inputText.lastIndexOf(textToErase);
         char[] inputTextCharacters = inputText.toCharArray();
         int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;
@@ -33,6 +32,11 @@ public class Eraser {
             }
         }
         return String.copyValueOf(inputTextCharacters);
+    }
+
+    private void validateArguments(String inputText, String textToErase) {
+        checkArgument(inputText != null);
+        checkArgument(textToErase != null);
     }
 
     protected boolean eraseCharacter(char[] inputTextCharacters, int i) {
