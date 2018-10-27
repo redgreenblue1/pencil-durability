@@ -141,5 +141,10 @@ public class PencilTest {
         assertEquals(defaultPencil.getEraser().getDurability(), eraserNewDurability);
     }
 
+    public void whenPencilIsRequestedToEraseTextItCanEraseIt() {
+        defaultPencil.write("abcd ed");
+        assertEquals(defaultPencil.erase("ed"), "abcd   ");
+    }
+
 
 }

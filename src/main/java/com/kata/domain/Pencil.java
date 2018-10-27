@@ -88,4 +88,8 @@ public class Pencil {
     public void setEraser(Eraser eraser) {
         this.eraser = eraser;
     }
+
+    public String erase(String textToErase) {
+        return getEraser().erase(text.toString(), textToErase);
+    }
 }
