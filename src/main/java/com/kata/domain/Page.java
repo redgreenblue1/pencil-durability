@@ -7,6 +7,10 @@ public class Page {
         this.content = new StringBuilder();
     }
 
+    public Page(String inputText) {
+        this.content = new StringBuilder(inputText);
+    }
+
     public String getTextContents() {
         return content.toString();
     }
