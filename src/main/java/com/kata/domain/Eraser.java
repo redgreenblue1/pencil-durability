@@ -21,8 +21,9 @@ public class Eraser {
     }
 
 
-    public String erase(String inputText, String textToErase) {
-        validateArguments(inputText, textToErase);
+    public String erase(Page page, String textToErase) {
+        validateArguments(page, textToErase);
+        String inputText = page.getTextContents();
         int lastIndexOfTextToErase = inputText.lastIndexOf(textToErase);
         char[] inputTextCharacters = inputText.toCharArray();
         int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;
@@ -34,7 +35,7 @@ public class Eraser {
         return String.copyValueOf(inputTextCharacters);
     }
 
-    private void validateArguments(String inputText, String textToErase) {
+    private void validateArguments(Page inputText, String textToErase) {
         checkArgument(inputText != null);
         checkArgument(textToErase != null);
     }

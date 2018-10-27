@@ -26,32 +26,32 @@ public class EraserTest {
 
     public void whenEraserProvidedWithTextItCanEraseWords() {
         String inputText = "abcd ab cd";
-        String updatedText = defalutEraser.erase(inputText, "cd");
+        String updatedText = defalutEraser.erase(new Page(inputText), "cd");
         assertEquals(updatedText, "abcd ab   ");
 
     }
 
     public void whenEraserProvedWithTextItEraseTheLastOccurrence() {
         String inputText = "abcd ab ab";
-        assertEquals(defalutEraser.erase(inputText, "ab"), "abcd ab   ");
+        assertEquals(defalutEraser.erase(new Page(inputText), "ab"), "abcd ab   ");
     }
 
     public void whenEraserEraseItsDurabilityReduceByOneForEachNoneWhiteSpaceCharacter() {
         String inputText = "abcd eFg";
         int oldDurability = defalutEraser.getDurability();
-        defalutEraser.erase(inputText, " eFg");
+        defalutEraser.erase(new Page(inputText), " eFg");
         assertEquals(defalutEraser.getDurability(), oldDurability - 3);
     }
 
     public void whenEraserErasesItSkipCharactersWhenDurabilityIsZero() {
         Eraser eraser = new Eraser(0);
-        String updatedText = eraser.erase("abc", "bc");
+        String updatedText = eraser.erase(new Page("abc"), "bc");
         assertEquals(updatedText, "abc");
     }
 
     public void whenEraserErasesItEraseFromRightToLeft() {
         Eraser eraser = new Eraser(2);
-        String updatedText = eraser.erase("abcde", "cde");
+        String updatedText = eraser.erase(new Page("abcde"), "cde");
         assertEquals(updatedText, "abc  ");
     }
 
@@ -62,6 +62,6 @@ public class EraserTest {
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void whenEraserEraseNullTextItReturnsException() {
-        defalutEraser.erase("abc", null);
+        defalutEraser.erase(new Page("abc"), null);
     }
 }
