@@ -92,4 +92,8 @@ public class Pencil {
     public String erase(String textToErase) {
         return getEraser().erase(text.toString(), textToErase);
     }
+
+    public Page getPage() {
+        return new Page();
+    }
 }

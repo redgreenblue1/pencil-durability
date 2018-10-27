@@ -146,5 +146,9 @@ public class PencilTest {
         assertEquals(defaultPencil.erase("ed"), "abcd   ");
     }
 
+    public void whenPencilCreatedItHasDefaultPage() {
+        assertNotNull(defaultPencil.getPage());
+    }
+
 
 }
