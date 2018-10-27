@@ -55,4 +55,9 @@ public class EraserTest {
         assertEquals(updatedText, "abc  ");
     }
 
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void whenEraserEraseFromNullTextItReturnsException() {
+        defalutEraser.erase(null, "22");
+    }
+
 }

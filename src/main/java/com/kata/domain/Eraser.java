@@ -1,6 +1,8 @@
 package com.kata.domain;
 
 
+import static com.google.common.base.Preconditions.checkArgument;
+
 public class Eraser {
     public static final char DEFAULT_ERASE_CHARACTER = ' ';
     private static final int DEFAULT_DURABILITY = 10;
@@ -20,6 +22,7 @@ public class Eraser {
 
 
     public String erase(String inputText, String textToErase) {
+        checkArgument(inputText != null, "Input Text Can't be null");
         int lastIndexOfTextToErase = inputText.lastIndexOf(textToErase);
         char[] inputTextCharacters = inputText.toCharArray();
         int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;
