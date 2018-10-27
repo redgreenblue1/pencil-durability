@@ -2,10 +2,12 @@ package com.kata.domain;
 
 
 public class Eraser {
+    public static final char DEFAULT_ERASE_CHARACTER = ' ';
+    private static final int DEFAULT_DURABILITY = 10;
     private int durability;
 
     public Eraser() {
-        this(10);
+        this(DEFAULT_DURABILITY);
     }
 
     public Eraser(int durability) {
@@ -20,20 +22,32 @@ public class Eraser {
     public String erase(String inputText, String textToErase) {
         int lastIndexOfTextToErase = inputText.lastIndexOf(textToErase);
         char[] inputTextCharacters = inputText.toCharArray();
-        for (int i = lastIndexOfTextToErase + textToErase.length() - 1; i >= lastIndexOfTextToErase; i--) {
-            if (canErase(inputTextCharacters[i])) {
-                handleErase(inputTextCharacters, i);
+        int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;
+        for (int i = firstIndexOfTextToErase; i >= lastIndexOfTextToErase; i--) {
+            if (eraseCharacter(inputTextCharacters, i)) {
+                updateDurability();
             }
         }
         return String.copyValueOf(inputTextCharacters);
+    }
+
+    protected boolean eraseCharacter(char[] inputTextCharacters, int i) {
+        if (canErase(inputTextCharacters[i])) {
+            inputTextCharacters[i] = getEraseCharacterToReplaceWith();
+            return true;
+        }
+        return false;
+    }
+
+    protected void updateDurability() {
+        this.durability--;
     }
 
     protected boolean canErase(char inputTextCharacter) {
         return !Character.isWhitespace(inputTextCharacter) && getDurability() != 0;
     }
 
-    protected void handleErase(char[] inputTextCharacters, int i) {
-        inputTextCharacters[i] = ' ';
-        this.durability--;
+    protected char getEraseCharacterToReplaceWith() {
+        return DEFAULT_ERASE_CHARACTER;
     }
 }
