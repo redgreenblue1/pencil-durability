@@ -18,4 +18,8 @@ public class Page {
     public void append(char inputCharacter) {
         content.append(inputCharacter);
     }
+
+    public void setContent(String updated) {
+        this.content = new StringBuilder(updated);
+    }
 }

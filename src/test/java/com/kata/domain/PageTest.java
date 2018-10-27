@@ -11,4 +11,10 @@ public class PageTest {
         assertEquals(page.getTextContents(), "blue");
 
     }
+
+    public void whenPageUpdateItsContentItReturnsUpdatedContents() {
+        Page page = new Page("initial");
+        page.setContent("updated");
+        assertEquals(page.getTextContents(), "updated");
+    }
 }
