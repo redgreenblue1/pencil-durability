@@ -20,14 +20,14 @@ public class PageTest {
 
     public void whenPageEditCharacterItWritesCharactersOverSpecifiedLocation() {
         Page page = new Page("ab de");
-        String updatedText = page.editCharacter('X', 2);
-        assertEquals(updatedText, "abXde");
+        page.editCharacter('X', 2);
+        assertEquals(page.getTextContents(), "abXde");
     }
 
     public void whenPageEditCharacterItWritesSpecialCharacterOverSpecifiedLocationIfLocationWasNotEmpty() {
         Page page = new Page("abcde");
-        String updatedText = page.editCharacter('X', 2);
-        assertEquals(updatedText, "ab" + page.getCollideCharacter() + "de");
+        page.editCharacter('X', 2);
+        assertEquals(page.getTextContents(), "ab" + page.getCollideCharacter() + "de");
     }
 
     public void whenPageEditItWritesCharacterOverIndexOfLastErase() {

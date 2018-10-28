@@ -44,13 +44,13 @@ public class Page {
         return getTextContents();
     }
 
-    protected String editCharacter(char charToEdit, int indexToEdit) {
+    public char editCharacter(char charToEdit, int indexToEdit) {
         char charToSet = charToEdit;
         if (isCharacterCollide(indexToEdit)) {
             charToSet = getCollideCharacter();
         }
         content.setCharAt(indexToEdit, charToSet);
-        return getTextContents();
+        return charToSet;
     }
 
     protected boolean isCharacterCollide(int indexToEdit) {
