@@ -1,6 +1,8 @@
 package com.kata.domain;
 
 
+import java.util.Optional;
+
 import static com.google.common.base.Preconditions.checkArgument;
 
 public class Eraser {
@@ -72,7 +74,7 @@ public class Eraser {
         return DEFAULT_ERASE_CHARACTER;
     }
 
-    public Integer getIndexOfLastErasedCharacter() {
-        return this.indexOfLastErasedCharacter;
+    public Optional<Integer> getIndexOfLastErasedCharacter() {
+        return Optional.ofNullable(this.indexOfLastErasedCharacter);
     }
 }

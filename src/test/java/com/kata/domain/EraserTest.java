@@ -3,8 +3,9 @@ package com.kata.domain;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static org.testng.Assert.assertEquals;
-import static org.testng.Assert.assertTrue;
+import java.util.Optional;
+
+import static org.testng.Assert.*;
 
 @Test
 public class EraserTest {
@@ -67,8 +68,8 @@ public class EraserTest {
 
     public void whenEraserErasesItCanReturnTheIndexOfLastDeletedCharacter() {
         defaultEraser.erase(new Page("abc de f"), "de");
-        int lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
-        assertEquals(lastIndex, 4);
+        Optional<Integer> lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
+        assertEquals(lastIndex.get().intValue(), 4);
     }
 
     public void whenEraserErasesItMayNotEraseAnyCharacterIfNoMatchFound() {
@@ -79,14 +80,14 @@ public class EraserTest {
 
     public void whenEraserErasesNoCharactersItsLastEraseLocationIsNull() {
         defaultEraser.erase(new Page("abc de f"), "XY");
-        Integer lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
-        assertEquals(lastIndex, null);
+        Optional<Integer> lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
+        assertFalse(lastIndex.isPresent());
     }
 
     public void whenEraserErasesAndLastCharacterIsWhiteSpaceItReturnsTheIndexOfWhiteSpace() {
         defaultEraser.erase(new Page("ab f"), " f");
-        Integer lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
-        assertEquals(lastIndex.intValue(), 2);
+        Optional<Integer> lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
+        assertEquals(lastIndex.get().intValue(), 2);
     }
 
 }
