@@ -38,14 +38,18 @@ public class Eraser {
         char[] inputTextCharacters = inputText.toCharArray();
         int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;
         for (int i = firstIndexOfTextToErase; i >= lastIndexOfTextToErase; i--) {
-            if (canBeAssignedAsLastIndexOfErase(inputTextCharacters[i])) {
-                this.indexOfLastErasedCharacter = i;
-            }
+            updateLastIndexOfErase(inputTextCharacters[i], i);
             if (eraseCharacter(inputTextCharacters, i)) {
                 updateDurability();
             }
         }
         return String.valueOf(inputTextCharacters);
+    }
+
+    private void updateLastIndexOfErase(char inputTextCharacter, int i) {
+        if (canBeAssignedAsLastIndexOfErase(inputTextCharacter)) {
+            this.indexOfLastErasedCharacter = i;
+        }
     }
 
     private Optional<Integer> getLastIndexOfTextToErase(String textToErase, String inputText) {
