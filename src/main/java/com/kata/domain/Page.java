@@ -34,11 +34,11 @@ public class Page {
         this.indexOfLastErasedCharacter = indexOfLastErasedCharacter;
     }
 
-    public String editCharacter(char charToEdit) {
-        if (!Character.isWhitespace(content.charAt(indexOfLastErasedCharacter))) {
-            content.setCharAt(indexOfLastErasedCharacter, '@');
+    public String editCharacter(char charToEdit, int locationToEdit) {
+        if (!Character.isWhitespace(content.charAt(locationToEdit))) {
+            content.setCharAt(locationToEdit, '@');
         } else {
-            content.setCharAt(indexOfLastErasedCharacter, charToEdit);
+            content.setCharAt(locationToEdit, charToEdit);
         }
         return getTextContents();
     }

@@ -18,17 +18,15 @@ public class PageTest {
         assertEquals(page.getTextContents(), "updated");
     }
 
-    public void whenPageEditItWritesCharactersOverLastErasedText() {
+    public void whenPageEditItWritesCharactersOverSpecifiedLocation() {
         Page page = new Page("ab de");
-        page.setIndexOfLastErasedCharacter(2);
-        String updatedText = page.editCharacter('X');
+        String updatedText = page.editCharacter('X', 2);
         assertEquals(updatedText, "abXde");
     }
 
-    public void whenPageEditItWritesSpecialCharacterOverLastErasedTextIfLocationWasNotEmpty() {
+    public void whenPageEditItWritesSpecialCharacterOverSpecifiedLocationIfLocationWasNotEmpty() {
         Page page = new Page("abcde");
-        page.setIndexOfLastErasedCharacter(2);
-        String updatedText = page.editCharacter('X');
+        String updatedText = page.editCharacter('X', 2);
         assertEquals(updatedText, "ab" + "@" + "de");
     }
 }
