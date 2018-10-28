@@ -1,7 +1,10 @@
 package com.kata.domain;
 
+import java.util.Optional;
+
 public class Page {
     private StringBuilder content;
+    private Integer indexOfLastErasedCharacter;
 
     public Page() {
         this.content = new StringBuilder();
@@ -21,5 +24,13 @@ public class Page {
 
     public void setContent(String updated) {
         this.content = new StringBuilder(updated);
+    }
+
+    public Optional<Integer> getIndexOfLastErasedCharacter() {
+        return Optional.ofNullable(this.indexOfLastErasedCharacter);
+    }
+
+    public void setIndexOfLastErasedCharacter(Integer indexOfLastErasedCharacter) {
+        this.indexOfLastErasedCharacter = indexOfLastErasedCharacter;
     }
 }

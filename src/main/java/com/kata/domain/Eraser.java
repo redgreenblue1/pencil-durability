@@ -26,7 +26,6 @@ public class Eraser {
         return this.durability;
     }
 
-
     public String erase(String textToErase) {
         checkArgument(textToErase != null);
         String inputText = getPage().getTextContents();
@@ -52,6 +51,7 @@ public class Eraser {
     private void updateLastIndexOfErase(char inputTextCharacter, int i) {
         if (canBeAssignedAsLastIndexOfErase(inputTextCharacter)) {
             this.indexOfLastErasedCharacter = i;
+            getPage().setIndexOfLastErasedCharacter(i);
         }
     }
 

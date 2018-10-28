@@ -116,4 +116,11 @@ public class EraserTest {
         assertEquals(lastIndex.get().intValue(), 2);
     }
 
+    public void whenEraserErasesThenPageKnowsTheIndexOfLastErase() {
+        Eraser eraser = createEraserWithPage("abf");
+        eraser.erase("f");
+        Optional<Integer> lastIndex = eraser.getIndexOfLastErasedCharacter();
+        assertEquals(eraser.getPage().getIndexOfLastErasedCharacter(), lastIndex);
+    }
+
 }
