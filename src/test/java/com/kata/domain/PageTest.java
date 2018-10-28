@@ -24,4 +24,11 @@ public class PageTest {
         String updatedText = page.editCharacter('X');
         assertEquals(updatedText, "abXde");
     }
+
+    public void whenPageEditItWritesSpecialCharacterOverLastErasedTextIfLocationWasNotEmpty() {
+        Page page = new Page("abcde");
+        page.setIndexOfLastErasedCharacter(2);
+        String updatedText = page.editCharacter('X');
+        assertEquals(updatedText, "ab" + "@" + "de");
+    }
 }
