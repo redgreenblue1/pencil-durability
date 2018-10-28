@@ -18,15 +18,23 @@ public class PageTest {
         assertEquals(page.getTextContents(), "updated");
     }
 
-    public void whenPageEditItWritesCharactersOverSpecifiedLocation() {
+    public void whenPageEditCharacterItWritesCharactersOverSpecifiedLocation() {
         Page page = new Page("ab de");
         String updatedText = page.editCharacter('X', 2);
         assertEquals(updatedText, "abXde");
     }
 
-    public void whenPageEditItWritesSpecialCharacterOverSpecifiedLocationIfLocationWasNotEmpty() {
+    public void whenPageEditCharacterItWritesSpecialCharacterOverSpecifiedLocationIfLocationWasNotEmpty() {
         Page page = new Page("abcde");
         String updatedText = page.editCharacter('X', 2);
         assertEquals(updatedText, "ab" + page.getCollideCharacter() + "de");
     }
+
+    public void whenPageEditItWritesCharacterOverIndexOfLastErase() {
+        Page page = new Page("ab de");
+        page.setIndexOfLastErasedCharacter(2);
+        String updatedText = page.edit("XZ");
+        assertEquals(updatedText, String.format("abX%se", page.getCollideCharacter()));
+    }
+
 }

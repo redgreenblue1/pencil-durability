@@ -35,6 +35,15 @@ public class Page {
         this.indexOfLastErasedCharacter = indexOfLastErasedCharacter;
     }
 
+    public String edit(String textToEdit) {
+        char[] editCharacters = textToEdit.toCharArray();
+        int editStartIndex = indexOfLastErasedCharacter;
+        for (int i = 0; i < editCharacters.length; i++) {
+            editCharacter(editCharacters[i], editStartIndex++);
+        }
+        return getTextContents();
+    }
+
     public String editCharacter(char charToEdit, int indexToEdit) {
         char charToSet = charToEdit;
         if (isCharacterCollide(indexToEdit)) {
