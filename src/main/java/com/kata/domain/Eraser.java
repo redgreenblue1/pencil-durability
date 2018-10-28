@@ -25,14 +25,18 @@ public class Eraser {
         validateArguments(page, textToErase);
         String inputText = page.getTextContents();
         int lastIndexOfTextToErase = inputText.lastIndexOf(textToErase);
-        char[] inputTextCharacters = inputText.toCharArray();
-        int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;
-        for (int i = firstIndexOfTextToErase; i >= lastIndexOfTextToErase; i--) {
-            if (eraseCharacter(inputTextCharacters, i)) {
-                updateDurability();
+        if (lastIndexOfTextToErase != -1) {
+            char[] inputTextCharacters = inputText.toCharArray();
+            int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;
+            for (int i = firstIndexOfTextToErase; i >= lastIndexOfTextToErase; i--) {
+                if (eraseCharacter(inputTextCharacters, i)) {
+                    updateDurability();
+                }
             }
+            return String.copyValueOf(inputTextCharacters);
+        } else {
+            return page.getTextContents();
         }
-        return String.copyValueOf(inputTextCharacters);
     }
 
     private void validateArguments(Page inputText, String textToErase) {

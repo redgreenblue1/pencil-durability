@@ -70,4 +70,11 @@ public class EraserTest {
         int lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
         assertEquals(lastIndex, 4);
     }
+
+    public void WhenEraserErasesItMayNotEraseAnyCharacterIfNoMatchFound() {
+        String originalText = "abc de f";
+        String updatedText = defaultEraser.erase(new Page(originalText), "XZ");
+        assertEquals(updatedText, originalText);
+    }
+
 }
