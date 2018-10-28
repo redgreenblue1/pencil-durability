@@ -46,11 +46,19 @@ public class Pencil {
     }
 
     protected void adjustDurability(char inputCharacter) {
-        if (Character.isLowerCase(inputCharacter) || inputCharacter == page.getCollideCharacter()) {
+        if (isReduceDurabilityByOne(inputCharacter)) {
             durabilityPoint--;
-        } else if (Character.isUpperCase(inputCharacter)) {
+        } else if (isReduceDurabilityByTwo(inputCharacter)) {
             durabilityPoint -= 2;
         }
+    }
+
+    private boolean isReduceDurabilityByTwo(char inputCharacter) {
+        return Character.isUpperCase(inputCharacter);
+    }
+
+    protected boolean isReduceDurabilityByOne(char inputCharacter) {
+        return Character.isLowerCase(inputCharacter) || inputCharacter == page.getCollideCharacter();
     }
 
     protected void appendText(char inputCharacter) {
