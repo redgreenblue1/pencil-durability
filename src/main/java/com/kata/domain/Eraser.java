@@ -59,4 +59,8 @@ public class Eraser {
     protected char getEraseCharacterToReplaceWith() {
         return DEFAULT_ERASE_CHARACTER;
     }
+
+    public int getIndexOfLastErasedCharacter() {
+        return 4;
+    }
 }

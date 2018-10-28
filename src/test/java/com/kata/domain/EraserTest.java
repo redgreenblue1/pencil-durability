@@ -64,4 +64,10 @@ public class EraserTest {
     public void whenEraserEraseNullTextItReturnsException() {
         defaultEraser.erase(new Page("abc"), null);
     }
+
+    public void WhenEraserErasesItCanReturnTheIndexOfLastDeletedCharacter() {
+        defaultEraser.erase(new Page("abc de f"), "de");
+        int lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
+        assertEquals(lastIndex, 4);
+    }
 }
