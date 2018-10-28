@@ -35,16 +35,16 @@ public class Page {
         this.indexOfLastErasedCharacter = indexOfLastErasedCharacter;
     }
 
-    public String edit(String textToEdit) {
-        char[] editCharacters = textToEdit.toCharArray();
+    public String edit(String inputTextToEdit) {
+        char[] inputTextToEditCharacters = inputTextToEdit.toCharArray();
         int editStartIndex = indexOfLastErasedCharacter;
-        for (int i = 0; i < editCharacters.length; i++) {
-            editCharacter(editCharacters[i], editStartIndex++);
+        for (int i = 0; i < inputTextToEditCharacters.length; i++) {
+            editCharacter(inputTextToEditCharacters[i], editStartIndex++);
         }
         return getTextContents();
     }
 
-    public String editCharacter(char charToEdit, int indexToEdit) {
+    protected String editCharacter(char charToEdit, int indexToEdit) {
         char charToSet = charToEdit;
         if (isCharacterCollide(indexToEdit)) {
             charToSet = getCollideCharacter();
