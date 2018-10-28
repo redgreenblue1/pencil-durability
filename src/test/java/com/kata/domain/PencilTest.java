@@ -162,5 +162,11 @@ public class PencilTest {
         assertEquals(updatedText, "An artich@k@ay keeps the doctor away");
     }
 
+    public void whenPencilWritesCollideCharacterItReducesDurabilityByOne() {
+        Pencil pencil = Pencil.createWithDurability(10);
+        pencil.write("ab@");
+        assertEquals(pencil.getPointDurability(), 10 - 3);
+    }
+
 
 }

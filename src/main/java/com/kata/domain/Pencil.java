@@ -46,7 +46,7 @@ public class Pencil {
     }
 
     protected void adjustDurability(char inputCharacter) {
-        if (Character.isLowerCase(inputCharacter)) {
+        if (Character.isLowerCase(inputCharacter) || inputCharacter == page.getCollideCharacter()) {
             durabilityPoint--;
         } else if (Character.isUpperCase(inputCharacter)) {
             durabilityPoint -= 2;
