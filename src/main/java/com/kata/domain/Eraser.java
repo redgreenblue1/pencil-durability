@@ -24,6 +24,11 @@ public class Eraser {
         this.page = page;
     }
 
+    public Eraser(int durability, Page page) {
+        this.durability = durability;
+        this.page = page;
+    }
+
     public int getDurability() {
         return this.durability;
     }

@@ -96,4 +96,11 @@ public class EraserTest {
         assertEquals(eraser.getPage(), page);
     }
 
+    public void whenEraserCreatedItCanBeProvidedWithPageAndDurability() {
+        Page page = new Page();
+        Eraser eraser = new Eraser(10, page);
+        assertEquals(eraser.getPage(), page);
+        assertEquals(eraser.getDurability(), 10);
+    }
+
 }
