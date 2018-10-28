@@ -16,6 +16,10 @@ public class EraserTest {
         defaultEraser = new Eraser(new Page());
     }
 
+    public static Eraser createEraserWithPage(String pageText) {
+        return new Eraser(new Page(pageText));
+    }
+
     public void whenEraserCreatedItHasPositiveDurability() {
         assertTrue(defaultEraser.getDurability() > 0);
     }
@@ -25,9 +29,6 @@ public class EraserTest {
         assertEquals(eraser.getDurability(), 10);
     }
 
-    public static Eraser createEraserWithPage(String pageText) {
-        return new Eraser(new Page(pageText));
-    }
 
     public void whenEraserProvidedWithTextItCanEraseWords() {
         String inputText = "abcd ab cd";
@@ -87,6 +88,12 @@ public class EraserTest {
         eraser.erase("XY");
         Optional<Integer> lastIndex = eraser.getIndexOfLastErasedCharacter();
         assertFalse(lastIndex.isPresent());
+    }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void whenEraserEraseFromNullTextItReturnsException() {
+        Eraser eraser = new Eraser(null);
+        eraser.erase("22");
     }
 
     public void whenEraserCreatedItCanBeProvidedWithPage() {

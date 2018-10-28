@@ -17,6 +17,7 @@ public class Eraser {
     }
 
     public Eraser(int durability, Page page) {
+        checkArgument(page != null);
         this.durability = durability;
         this.page = page;
     }
