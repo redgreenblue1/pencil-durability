@@ -136,7 +136,7 @@ public class PencilTest {
     public void whenPencilAskedToSetEraserItCanReturnThatEraser() {
         int eraserDefaultDurability = defaultPencil.getEraser().getDurability();
         int eraserNewDurability = eraserDefaultDurability + 10;
-        Eraser newEraser = new Eraser(eraserNewDurability);
+        Eraser newEraser = new Eraser(eraserNewDurability, new Page());
         defaultPencil.setEraser(newEraser);
         assertEquals(defaultPencil.getEraser().getDurability(), eraserNewDurability);
     }

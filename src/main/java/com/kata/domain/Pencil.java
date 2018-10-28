@@ -30,7 +30,7 @@ public class Pencil {
         pencil.durabilityPoint = durability;
         pencil.initialDurability = durability;
         pencil.length = length;
-        pencil.eraser = new Eraser();
+        pencil.eraser = new Eraser(new Page());
         return pencil;
     }
 

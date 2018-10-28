@@ -13,7 +13,7 @@ public class EraserTest {
 
     @BeforeMethod
     public void setup() {
-        defaultEraser = new Eraser();
+        defaultEraser = new Eraser(new Page());
     }
 
     public void whenEraserCreatedItHasPositiveDurability() {
@@ -21,7 +21,7 @@ public class EraserTest {
     }
 
     public void whenEraserCreateItCanAcceptDurability() {
-        Eraser eraser = new Eraser(10);
+        Eraser eraser = new Eraser(10, new Page());
         assertEquals(eraser.getDurability(), 10);
     }
 
@@ -45,13 +45,13 @@ public class EraserTest {
     }
 
     public void whenEraserErasesItSkipCharactersWhenDurabilityIsZero() {
-        Eraser eraser = new Eraser(0);
+        Eraser eraser = new Eraser(0, new Page());
         String updatedText = eraser.erase(new Page("abc"), "bc");
         assertEquals(updatedText, "abc");
     }
 
     public void whenEraserErasesItEraseFromRightToLeft() {
-        Eraser eraser = new Eraser(2);
+        Eraser eraser = new Eraser(2, new Page());
         String updatedText = eraser.erase(new Page("abcde"), "cde");
         assertEquals(updatedText, "abc  ");
     }

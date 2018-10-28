@@ -12,16 +12,8 @@ public class Eraser {
     private Integer indexOfLastErasedCharacter;
     private Page page;
 
-    public Eraser() {
-        this(DEFAULT_DURABILITY);
-    }
-
-    public Eraser(int durability) {
-        this.durability = durability;
-    }
-
     public Eraser(Page page) {
-        this.page = page;
+        this(DEFAULT_DURABILITY, page);
     }
 
     public Eraser(int durability, Page page) {
