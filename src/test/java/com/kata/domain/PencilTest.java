@@ -155,5 +155,12 @@ public class PencilTest {
         assertEquals(defaultPencil.getPage().getTextContents(), writtenText);
     }
 
+    public void whenPencilEditItWritesCharacterStartingFromLastEraseIndex() {
+        defaultPencil.write("An apple a day keeps the doctor away");
+        defaultPencil.erase("apple");
+        String updatedText = defaultPencil.edit("artichoke");
+        assertEquals(updatedText, "An artich@k@ay keeps the doctor away");
+    }
+
 
 }

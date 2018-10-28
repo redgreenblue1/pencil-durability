@@ -96,4 +96,9 @@ public class Pencil {
     public Page getPage() {
         return this.page;
     }
+
+    public String edit(String textToEdit) {
+        return getPage().edit(textToEdit);
+    }
+
 }
