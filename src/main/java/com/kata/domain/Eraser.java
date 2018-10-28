@@ -26,9 +26,9 @@ public class Eraser {
     }
 
 
-    public String erase(Page page, String textToErase) {
-        validateArguments(page, textToErase);
-        String inputText = page.getTextContents();
+    public String erase(String textToErase) {
+        checkArgument(textToErase != null);
+        String inputText = getPage().getTextContents();
         Optional<Integer> optionalLastIndexOfTextToErase = getLastIndexOfTextToErase(textToErase, inputText);
         if (optionalLastIndexOfTextToErase.isPresent()) {
             inputText = eraseCharacters(textToErase, inputText, optionalLastIndexOfTextToErase.get());
@@ -60,11 +60,6 @@ public class Eraser {
             return Optional.of(lastIndexOfTextToErase);
         }
         return Optional.empty();
-    }
-
-    private void validateArguments(Page inputText, String textToErase) {
-        checkArgument(inputText != null);
-        checkArgument(textToErase != null);
     }
 
     protected boolean eraseCharacter(char[] inputTextCharacters, int i) {

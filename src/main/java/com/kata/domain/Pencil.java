@@ -30,7 +30,7 @@ public class Pencil {
         pencil.durabilityPoint = durability;
         pencil.initialDurability = durability;
         pencil.length = length;
-        pencil.eraser = new Eraser(new Page());
+        pencil.eraser = new Eraser(pencil.getPage());
         return pencil;
     }
 
@@ -90,7 +90,7 @@ public class Pencil {
     }
 
     public String erase(String textToErase) {
-        return getEraser().erase(page, textToErase);
+        return getEraser().erase(textToErase);
     }
 
     public Page getPage() {

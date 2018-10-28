@@ -25,69 +25,68 @@ public class EraserTest {
         assertEquals(eraser.getDurability(), 10);
     }
 
+    public static Eraser createEraserWithPage(String pageText) {
+        return new Eraser(new Page(pageText));
+    }
+
     public void whenEraserProvidedWithTextItCanEraseWords() {
         String inputText = "abcd ab cd";
-        String updatedText = defaultEraser.erase(new Page(inputText), "cd");
+        Eraser eraser = createEraserWithPage(inputText);
+        String updatedText = eraser.erase("cd");
         assertEquals(updatedText, "abcd ab   ");
 
     }
 
     public void whenEraserProvedWithTextItEraseTheLastOccurrence() {
         String inputText = "abcd ab ab";
-        assertEquals(defaultEraser.erase(new Page(inputText), "ab"), "abcd ab   ");
+        Eraser eraser = createEraserWithPage(inputText);
+        assertEquals(eraser.erase("ab"), "abcd ab   ");
     }
 
     public void whenEraserEraseItsDurabilityReduceByOneForEachNoneWhiteSpaceCharacter() {
         String inputText = "abcd eFg";
-        int oldDurability = defaultEraser.getDurability();
-        defaultEraser.erase(new Page(inputText), " eFg");
-        assertEquals(defaultEraser.getDurability(), oldDurability - 3);
+        Eraser eraser = createEraserWithPage(inputText);
+        int oldDurability = eraser.getDurability();
+        eraser.erase(" eFg");
+        assertEquals(eraser.getDurability(), oldDurability - 3);
     }
 
     public void whenEraserErasesItSkipCharactersWhenDurabilityIsZero() {
-        Eraser eraser = new Eraser(0, new Page());
-        String updatedText = eraser.erase(new Page("abc"), "bc");
+        Eraser eraser = new Eraser(0, new Page("abc"));
+        String updatedText = eraser.erase("bc");
         assertEquals(updatedText, "abc");
     }
 
     public void whenEraserErasesItEraseFromRightToLeft() {
-        Eraser eraser = new Eraser(2, new Page());
-        String updatedText = eraser.erase(new Page("abcde"), "cde");
+        Eraser eraser = new Eraser(2, new Page("abcde"));
+        String updatedText = eraser.erase("cde");
         assertEquals(updatedText, "abc  ");
     }
 
     @Test(expectedExceptions = IllegalArgumentException.class)
-    public void whenEraserEraseFromNullTextItReturnsException() {
-        defaultEraser.erase(null, "22");
-    }
-
-    @Test(expectedExceptions = IllegalArgumentException.class)
     public void whenEraserEraseNullTextItReturnsException() {
-        defaultEraser.erase(new Page("abc"), null);
+        defaultEraser.erase(null);
     }
 
     public void whenEraserErasesItCanReturnTheIndexOfLastDeletedCharacter() {
-        defaultEraser.erase(new Page("abc de f"), "de");
-        Optional<Integer> lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
+        Eraser eraser = createEraserWithPage("abc de f");
+        eraser.erase("de");
+        Optional<Integer> lastIndex = eraser.getIndexOfLastErasedCharacter();
         assertEquals(lastIndex.get().intValue(), 4);
     }
 
     public void whenEraserErasesItMayNotEraseAnyCharacterIfNoMatchFound() {
         String originalText = "abc de f";
-        String updatedText = defaultEraser.erase(new Page(originalText), "XZ");
+        Eraser eraser = createEraserWithPage(originalText);
+        String updatedText = eraser.erase("XZ");
         assertEquals(updatedText, originalText);
     }
 
     public void whenEraserErasesNoCharactersItsLastEraseLocationIsNull() {
-        defaultEraser.erase(new Page("abc de f"), "XY");
-        Optional<Integer> lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
+        Eraser eraser = createEraserWithPage("abc de f");
+        eraser.erase("XY");
+        Optional<Integer> lastIndex = eraser.getIndexOfLastErasedCharacter();
         assertFalse(lastIndex.isPresent());
-    }
-
-    public void whenEraserErasesAndLastCharacterIsWhiteSpaceItReturnsTheIndexOfWhiteSpace() {
-        defaultEraser.erase(new Page("ab f"), " f");
-        Optional<Integer> lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
-        assertEquals(lastIndex.get().intValue(), 2);
     }
 
     public void whenEraserCreatedItCanBeProvidedWithPage() {
@@ -101,6 +100,13 @@ public class EraserTest {
         Eraser eraser = new Eraser(10, page);
         assertEquals(eraser.getPage(), page);
         assertEquals(eraser.getDurability(), 10);
+    }
+
+    public void whenEraserErasesAndLastCharacterIsWhiteSpaceItReturnsTheIndexOfWhiteSpace() {
+        Eraser eraser = createEraserWithPage("ab f");
+        eraser.erase(" f");
+        Optional<Integer> lastIndex = eraser.getIndexOfLastErasedCharacter();
+        assertEquals(lastIndex.get().intValue(), 2);
     }
 
 }
