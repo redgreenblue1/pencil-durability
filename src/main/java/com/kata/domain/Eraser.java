@@ -30,7 +30,7 @@ public class Eraser {
             char[] inputTextCharacters = inputText.toCharArray();
             int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;
             for (int i = firstIndexOfTextToErase; i >= lastIndexOfTextToErase; i--) {
-                if (Character.isWhitespace(inputTextCharacters[i])) {
+                if (canBeAssignedAsLastIndexOfErase(inputTextCharacters[i])) {
                     this.indexOfLastErasedCharacter = i;
                 }
                 if (eraseCharacter(inputTextCharacters, i)) {
@@ -51,10 +51,13 @@ public class Eraser {
     protected boolean eraseCharacter(char[] inputTextCharacters, int i) {
         if (canErase(inputTextCharacters[i])) {
             inputTextCharacters[i] = getEraseCharacterToReplaceWith();
-            this.indexOfLastErasedCharacter = i;
             return true;
         }
         return false;
+    }
+
+    protected boolean canBeAssignedAsLastIndexOfErase(char inputTextCharacter) {
+        return Character.isWhitespace(inputTextCharacter) || getDurability() != 0;
     }
 
     protected void updateDurability() {
