@@ -3,6 +3,7 @@ package com.kata.domain;
 import java.util.Optional;
 
 public class Page {
+    private static final char COLLIDE_CHARACTER = '@';
     private StringBuilder content;
     private Integer indexOfLastErasedCharacter;
 
@@ -34,12 +35,20 @@ public class Page {
         this.indexOfLastErasedCharacter = indexOfLastErasedCharacter;
     }
 
-    public String editCharacter(char charToEdit, int locationToEdit) {
-        if (!Character.isWhitespace(content.charAt(locationToEdit))) {
-            content.setCharAt(locationToEdit, '@');
-        } else {
-            content.setCharAt(locationToEdit, charToEdit);
+    public String editCharacter(char charToEdit, int indexToEdit) {
+        char charToSet = charToEdit;
+        if (isCharacterCollide(indexToEdit)) {
+            charToSet = getCollideCharacter();
         }
+        content.setCharAt(indexToEdit, charToSet);
         return getTextContents();
+    }
+
+    protected boolean isCharacterCollide(int indexToEdit) {
+        return !Character.isWhitespace(content.charAt(indexToEdit));
+    }
+
+    protected char getCollideCharacter() {
+        return COLLIDE_CHARACTER;
     }
 }

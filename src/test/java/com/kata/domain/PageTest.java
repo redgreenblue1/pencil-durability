@@ -27,6 +27,6 @@ public class PageTest {
     public void whenPageEditItWritesSpecialCharacterOverSpecifiedLocationIfLocationWasNotEmpty() {
         Page page = new Page("abcde");
         String updatedText = page.editCharacter('X', 2);
-        assertEquals(updatedText, "ab" + "@" + "de");
+        assertEquals(updatedText, "ab" + page.getCollideCharacter() + "de");
     }
 }
