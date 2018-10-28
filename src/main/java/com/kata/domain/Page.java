@@ -33,4 +33,9 @@ public class Page {
     public void setIndexOfLastErasedCharacter(Integer indexOfLastErasedCharacter) {
         this.indexOfLastErasedCharacter = indexOfLastErasedCharacter;
     }
+
+    public String editCharacter(char charToEdit) {
+        content.setCharAt(indexOfLastErasedCharacter, charToEdit);
+        return getTextContents();
+    }
 }

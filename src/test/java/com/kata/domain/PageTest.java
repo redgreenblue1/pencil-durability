@@ -17,4 +17,11 @@ public class PageTest {
         page.setContent("updated");
         assertEquals(page.getTextContents(), "updated");
     }
+
+    public void whenPageEditItWritesCharactersOverLastErasedText() {
+        Page page = new Page("ab de");
+        page.setIndexOfLastErasedCharacter(2);
+        String updatedText = page.editCharacter('X');
+        assertEquals(updatedText, "abXde");
+    }
 }
