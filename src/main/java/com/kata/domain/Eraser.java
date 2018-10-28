@@ -30,6 +30,9 @@ public class Eraser {
             char[] inputTextCharacters = inputText.toCharArray();
             int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;
             for (int i = firstIndexOfTextToErase; i >= lastIndexOfTextToErase; i--) {
+                if (Character.isWhitespace(inputTextCharacters[i])) {
+                    this.indexOfLastErasedCharacter = i;
+                }
                 if (eraseCharacter(inputTextCharacters, i)) {
                     updateDurability();
                 }

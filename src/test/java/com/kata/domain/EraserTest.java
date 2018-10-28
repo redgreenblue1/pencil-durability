@@ -65,13 +65,13 @@ public class EraserTest {
         defaultEraser.erase(new Page("abc"), null);
     }
 
-    public void WhenEraserErasesItCanReturnTheIndexOfLastDeletedCharacter() {
+    public void whenEraserErasesItCanReturnTheIndexOfLastDeletedCharacter() {
         defaultEraser.erase(new Page("abc de f"), "de");
         int lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
         assertEquals(lastIndex, 4);
     }
 
-    public void WhenEraserErasesItMayNotEraseAnyCharacterIfNoMatchFound() {
+    public void whenEraserErasesItMayNotEraseAnyCharacterIfNoMatchFound() {
         String originalText = "abc de f";
         String updatedText = defaultEraser.erase(new Page(originalText), "XZ");
         assertEquals(updatedText, originalText);
@@ -81,6 +81,12 @@ public class EraserTest {
         defaultEraser.erase(new Page("abc de f"), "XY");
         Integer lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
         assertEquals(lastIndex, null);
+    }
+
+    public void whenEraserErasesAndLastCharacterIsWhiteSpaceItReturnsTheIndexOfWhiteSpace() {
+        defaultEraser.erase(new Page("ab f"), " f");
+        Integer lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
+        assertEquals(lastIndex.intValue(), 2);
     }
 
 }
