@@ -10,6 +10,7 @@ public class Eraser {
     private static final int DEFAULT_DURABILITY = 10;
     private int durability;
     private Integer indexOfLastErasedCharacter;
+    private Page page;
 
     public Eraser() {
         this(DEFAULT_DURABILITY);
@@ -17,6 +18,10 @@ public class Eraser {
 
     public Eraser(int durability) {
         this.durability = durability;
+    }
+
+    public Eraser(Page page) {
+        this.page = page;
     }
 
     public int getDurability() {
@@ -91,5 +96,9 @@ public class Eraser {
 
     public Optional<Integer> getIndexOfLastErasedCharacter() {
         return Optional.ofNullable(this.indexOfLastErasedCharacter);
+    }
+
+    public Page getPage() {
+        return this.page;
     }
 }

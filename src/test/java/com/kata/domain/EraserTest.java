@@ -90,4 +90,10 @@ public class EraserTest {
         assertEquals(lastIndex.get().intValue(), 2);
     }
 
+    public void whenEraserCreatedItCanBeProvidedWithPage() {
+        Page page = new Page();
+        Eraser eraser = new Eraser(page);
+        assertEquals(eraser.getPage(), page);
+    }
+
 }
