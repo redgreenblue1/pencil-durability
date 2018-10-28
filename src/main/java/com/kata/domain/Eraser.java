@@ -32,6 +32,7 @@ public class Eraser {
         Optional<Integer> optionalLastIndexOfTextToErase = getLastIndexOfTextToErase(textToErase, inputText);
         if (optionalLastIndexOfTextToErase.isPresent()) {
             inputText = eraseCharacters(textToErase, inputText, optionalLastIndexOfTextToErase.get());
+            getPage().setContent(inputText);
         }
         return inputText;
     }

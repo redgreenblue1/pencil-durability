@@ -123,4 +123,9 @@ public class EraserTest {
         assertEquals(eraser.getPage().getIndexOfLastErasedCharacter(), lastIndex);
     }
 
+    public void whenEraserEraseItSetThePageContentsWithErasedText() {
+        Eraser eraser = createEraserWithPage("abcd");
+        assertEquals(eraser.erase("cd"), eraser.getPage().getTextContents());
+    }
+
 }
