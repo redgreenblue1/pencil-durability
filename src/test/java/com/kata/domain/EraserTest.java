@@ -77,4 +77,10 @@ public class EraserTest {
         assertEquals(updatedText, originalText);
     }
 
+    public void whenEraserErasesNoCharactersItsLastEraseLocationIsNull() {
+        defaultEraser.erase(new Page("abc de f"), "XY");
+        Integer lastIndex = defaultEraser.getIndexOfLastErasedCharacter();
+        assertEquals(lastIndex, null);
+    }
+
 }

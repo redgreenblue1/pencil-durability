@@ -7,6 +7,7 @@ public class Eraser {
     public static final char DEFAULT_ERASE_CHARACTER = ' ';
     private static final int DEFAULT_DURABILITY = 10;
     private int durability;
+    private Integer indexOfLastErasedCharacter;
 
     public Eraser() {
         this(DEFAULT_DURABILITY);
@@ -47,6 +48,7 @@ public class Eraser {
     protected boolean eraseCharacter(char[] inputTextCharacters, int i) {
         if (canErase(inputTextCharacters[i])) {
             inputTextCharacters[i] = getEraseCharacterToReplaceWith();
+            this.indexOfLastErasedCharacter = i;
             return true;
         }
         return false;
@@ -64,7 +66,7 @@ public class Eraser {
         return DEFAULT_ERASE_CHARACTER;
     }
 
-    public int getIndexOfLastErasedCharacter() {
-        return 4;
+    public Integer getIndexOfLastErasedCharacter() {
+        return this.indexOfLastErasedCharacter;
     }
 }
