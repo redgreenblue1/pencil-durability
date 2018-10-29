@@ -20,6 +20,7 @@ public class Page {
     }
 
     public void append(char inputCharacter) {
+        setIndexOfLastErasedCharacter(null);
         content.append(inputCharacter);
     }
 

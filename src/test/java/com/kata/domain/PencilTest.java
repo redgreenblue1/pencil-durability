@@ -190,5 +190,11 @@ public class PencilTest {
         defaultPencil.edit("x");
     }
 
-
+    @Test(expectedExceptions = IllegalStateException.class)
+    public void whenPencilEditsItThrowErrorIfItCalledAfterWriteWithoutErase() {
+        defaultPencil.write("abcd");
+        defaultPencil.erase("a");
+        defaultPencil.write(" xy");
+        defaultPencil.edit("a");
+    }
 }
