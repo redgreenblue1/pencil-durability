@@ -71,11 +71,15 @@ public class Pencil {
     }
 
     protected void appendText(char inputCharacter) {
-        if (getPointDurability() >= 0) {
+        if (canWriteText()) {
             page.append(inputCharacter);
         } else {
             page.append(ONE_SPACE);
         }
+    }
+
+    private boolean canWriteText() {
+        return getPointDurability() >= 0;
     }
 
     public int getPointDurability() {
