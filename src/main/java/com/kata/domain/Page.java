@@ -20,8 +20,12 @@ public class Page {
     }
 
     public void append(char inputCharacter) {
-        setIndexOfLastErasedCharacter(null);
+        resetIndexOfLastErasedCharacter();
         content.append(inputCharacter);
+    }
+
+    private void resetIndexOfLastErasedCharacter() {
+        setIndexOfLastErasedCharacter(null);
     }
 
     public void setContent(String updated) {
