@@ -183,4 +183,12 @@ public class PencilTest {
         assertEquals(pencil.edit("zxy"), "z c");
     }
 
+    @Test(expectedExceptions = IllegalStateException.class)
+    public void whenPencilEditsItThrowErrorIfNoCharactersWereErasedBefore() {
+        defaultPencil.write("abcd");
+        defaultPencil.erase("m");
+        defaultPencil.edit("x");
+    }
+
+
 }
