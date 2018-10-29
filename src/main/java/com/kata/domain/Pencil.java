@@ -48,8 +48,10 @@ public class Pencil {
     public String edit(String textToEdit) {
         int editLocation = page.getIndexOfLastErasedCharacter().get();
         for (char characterToEdit : textToEdit.toCharArray()) {
-            char updatedCharacter = page.editCharacter(characterToEdit, editLocation++);
-            adjustDurability(updatedCharacter);
+            if (getPointDurability() > 0) {
+                char updatedCharacter = page.editCharacter(characterToEdit, editLocation++);
+                adjustDurability(updatedCharacter);
+            }
         }
         return getPage().getTextContents();
     }

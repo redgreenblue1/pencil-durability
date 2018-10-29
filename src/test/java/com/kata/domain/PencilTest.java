@@ -176,5 +176,11 @@ public class PencilTest {
         assertEquals(pencil.getPointDurability(), 10 - 5);
     }
 
+    public void whenPencilEditsWithZeroDurabilityItLeaveCharactersAsIs() {
+        Pencil pencil = Pencil.createWithDurability(4);
+        pencil.write("abc");
+        pencil.erase("ab");
+        assertEquals(pencil.edit("zxy"), "z c");
+    }
 
 }
