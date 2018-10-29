@@ -168,5 +168,13 @@ public class PencilTest {
         assertEquals(pencil.getPointDurability(), 10 - 3);
     }
 
+    public void whenPencilEditsWithCollideCharacterItReducesDurabilityByOne() {
+        Pencil pencil = Pencil.createWithDurability(10);
+        pencil.write("abc");
+        pencil.erase("a");
+        assertEquals(pencil.edit("zx"), "z@c");
+        assertEquals(pencil.getPointDurability(), 10 - 5);
+    }
+
 
 }

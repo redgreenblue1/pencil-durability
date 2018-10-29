@@ -45,6 +45,15 @@ public class Pencil {
         return page.getTextContents();
     }
 
+    public String edit(String textToEdit) {
+        int editLocation = page.getIndexOfLastErasedCharacter().get();
+        for (char characterToEdit : textToEdit.toCharArray()) {
+            char updatedCharacter = page.editCharacter(characterToEdit, editLocation++);
+            adjustDurability(updatedCharacter);
+        }
+        return getPage().getTextContents();
+    }
+
     protected void adjustDurability(char inputCharacter) {
         if (isReduceDurabilityByOne(inputCharacter)) {
             durabilityPoint--;
@@ -103,10 +112,6 @@ public class Pencil {
 
     public Page getPage() {
         return this.page;
-    }
-
-    public String edit(String textToEdit) {
-        return getPage().edit(textToEdit);
     }
 
 }
