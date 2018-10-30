@@ -53,7 +53,7 @@ public class Pencil {
         }
         for (char characterToEdit : textToEdit.toCharArray()) {
             if (canEditText()) {
-                char updatedCharacter = page.editCharacter(characterToEdit, editLocation++);
+                char updatedCharacter = page.editCharacterAt(characterToEdit, editLocation++);
                 adjustDurability(updatedCharacter);
             }
         }

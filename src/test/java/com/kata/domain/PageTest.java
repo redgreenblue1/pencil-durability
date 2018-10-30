@@ -20,13 +20,13 @@ public class PageTest {
 
     public void whenPageEditCharacterItWritesCharactersOverSpecifiedLocation() {
         Page page = new Page("ab de");
-        page.editCharacter('X', 2);
+        page.editCharacterAt('X', 2);
         assertEquals(page.getTextContents(), "abXde");
     }
 
     public void whenPageEditCharacterItWritesSpecialCharacterOverSpecifiedLocationIfLocationWasNotEmpty() {
         Page page = new Page("abcde");
-        page.editCharacter('X', 2);
+        page.editCharacterAt('X', 2);
         assertEquals(page.getTextContents(), "ab" + page.getCollideCharacter() + "de");
     }
 

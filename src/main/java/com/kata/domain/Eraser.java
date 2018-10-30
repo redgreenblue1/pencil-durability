@@ -46,7 +46,7 @@ public class Eraser {
                 updateDurability();
             }
         }
-        return String.valueOf(inputTextCharacters);
+        return String.valueOf(page.getTextContents());
     }
 
     private void updateLastIndexOfErase(char inputTextCharacter, int i) {
@@ -66,7 +66,7 @@ public class Eraser {
 
     protected boolean eraseCharacter(char[] inputTextCharacters, int i) {
         if (canErase(inputTextCharacters[i])) {
-            inputTextCharacters[i] = getEraseCharacterToReplaceWith();
+            getPage().replaceCharacterAt(i, getEraseCharacterToReplaceWith());
             return true;
         }
         return false;

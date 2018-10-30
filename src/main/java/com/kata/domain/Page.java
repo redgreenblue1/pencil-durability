@@ -40,13 +40,17 @@ public class Page {
         this.indexOfLastErasedCharacter = indexOfLastErasedCharacter;
     }
 
-    public char editCharacter(char charToEdit, int indexToEdit) {
+    public char editCharacterAt(char charToEdit, int indexToEdit) {
         char charToSet = charToEdit;
         if (isCharacterCollide(indexToEdit)) {
             charToSet = getCollideCharacter();
         }
         content.setCharAt(indexToEdit, charToSet);
         return charToSet;
+    }
+
+    public void replaceCharacterAt(int eraseIndex, char replacingCharacter) {
+        content.setCharAt(eraseIndex, replacingCharacter);
     }
 
     protected boolean isCharacterCollide(int indexToEdit) {
