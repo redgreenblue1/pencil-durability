@@ -2,74 +2,26 @@ package com.kata.domain;
 
 import java.util.Optional;
 
-public class Page {
-    private static final char COLLIDE_CHARACTER = '@';
-    private StringBuilder content;
-    private Integer indexOfLastErasedCharacter;
+public interface Page {
+    String getTextContents();
 
-    public Page() {
-        this.content = new StringBuilder();
-    }
+    void append(char inputCharacter);
 
-    public Page(String inputText) {
-        this.content = new StringBuilder(inputText);
-    }
+    void setContent(String updated);
 
-    public String getTextContents() {
-        return content.toString();
-    }
+    Optional<Integer> getIndexOfLastErasedCharacter();
 
-    public void append(char inputCharacter) {
-        resetIndexOfLastErasedCharacter();
-        content.append(inputCharacter);
-    }
+    void setIndexOfLastErasedCharacter(Integer indexOfLastErasedCharacter);
 
-    private void resetIndexOfLastErasedCharacter() {
-        setIndexOfLastErasedCharacter(null);
-    }
+    char editCharacterAt(char charToEdit, int indexToEdit);
 
-    public void setContent(String updated) {
-        this.content = new StringBuilder(updated);
-    }
+    void replaceCharacterAt(int eraseIndex, char replacingCharacter);
 
-    public Optional<Integer> getIndexOfLastErasedCharacter() {
-        return Optional.ofNullable(this.indexOfLastErasedCharacter);
-    }
+    Optional<Integer> getLastIndexOfTextMatch(String textToMatch);
 
-    public void setIndexOfLastErasedCharacter(Integer indexOfLastErasedCharacter) {
-        this.indexOfLastErasedCharacter = indexOfLastErasedCharacter;
-    }
+    boolean isCharacterCollide(int indexToEdit);
 
-    public char editCharacterAt(char charToEdit, int indexToEdit) {
-        char charToSet = charToEdit;
-        if (isCharacterCollide(indexToEdit)) {
-            charToSet = getCollideCharacter();
-        }
-        content.setCharAt(indexToEdit, charToSet);
-        return charToSet;
-    }
+    char getCollideCharacter();
 
-    public void replaceCharacterAt(int eraseIndex, char replacingCharacter) {
-        content.setCharAt(eraseIndex, replacingCharacter);
-    }
-
-    public Optional<Integer> getLastIndexOfTextMatch(String textToMatch) {
-        int lastIndexOfMatch = content.lastIndexOf(textToMatch);
-        if (lastIndexOfMatch != -1) {
-            return Optional.of(lastIndexOfMatch);
-        }
-        return Optional.empty();
-    }
-
-    protected boolean isCharacterCollide(int indexToEdit) {
-        return !Character.isWhitespace(content.charAt(indexToEdit));
-    }
-
-    protected char getCollideCharacter() {
-        return COLLIDE_CHARACTER;
-    }
-
-    public char getCharacterAt(int index) {
-        return content.charAt(index);
-    }
+    char getCharacterAt(int index);
 }

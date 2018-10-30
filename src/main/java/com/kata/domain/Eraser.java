@@ -28,7 +28,7 @@ public class Eraser {
 
     public String erase(String textToErase) {
         checkArgument(textToErase != null);
-        Optional<Integer> lastIndexOfTextErase = page.getLastIndexOfTextMatch(textToErase);
+        Optional<Integer> lastIndexOfTextErase = getPage().getLastIndexOfTextMatch(textToErase);
         lastIndexOfTextErase.ifPresent(integer -> eraseCharacters(textToErase, integer));
         return getPage().getTextContents();
     }

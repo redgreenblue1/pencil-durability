@@ -26,7 +26,7 @@ public class Pencil {
 
     public static Pencil createWithDurabilityAndLength(int durability, int length) {
         Pencil pencil = new Pencil();
-        pencil.page = new Page();
+        pencil.page = new BasicPage();
         pencil.durabilityPoint = durability;
         pencil.initialDurability = durability;
         pencil.length = length;

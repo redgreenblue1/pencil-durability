@@ -11,13 +11,13 @@ import static org.testng.Assert.*;
 public class EraserTest {
     private Eraser defaultEraser;
 
-    @BeforeMethod
-    public void setup() {
-        defaultEraser = new Eraser(new Page());
+    public static Eraser createEraserWithPage(String pageText) {
+        return new Eraser(new BasicPage(pageText));
     }
 
-    public static Eraser createEraserWithPage(String pageText) {
-        return new Eraser(new Page(pageText));
+    @BeforeMethod
+    public void setup() {
+        defaultEraser = new Eraser(new BasicPage());
     }
 
     public void whenEraserCreatedItHasPositiveDurability() {
@@ -25,7 +25,7 @@ public class EraserTest {
     }
 
     public void whenEraserCreateItCanAcceptDurability() {
-        Eraser eraser = new Eraser(10, new Page());
+        Eraser eraser = new Eraser(10, new BasicPage());
         assertEquals(eraser.getDurability(), 10);
     }
 
@@ -53,13 +53,13 @@ public class EraserTest {
     }
 
     public void whenEraserErasesItSkipCharactersWhenDurabilityIsZero() {
-        Eraser eraser = new Eraser(0, new Page("abc"));
+        Eraser eraser = new Eraser(0, new BasicPage("abc"));
         String updatedText = eraser.erase("bc");
         assertEquals(updatedText, "abc");
     }
 
     public void whenEraserErasesItEraseFromRightToLeft() {
-        Eraser eraser = new Eraser(2, new Page("abcde"));
+        Eraser eraser = new Eraser(2, new BasicPage("abcde"));
         String updatedText = eraser.erase("cde");
         assertEquals(updatedText, "abc  ");
     }
@@ -97,13 +97,13 @@ public class EraserTest {
     }
 
     public void whenEraserCreatedItCanBeProvidedWithPage() {
-        Page page = new Page();
+        Page page = new BasicPage();
         Eraser eraser = new Eraser(page);
         assertEquals(eraser.getPage(), page);
     }
 
     public void whenEraserCreatedItCanBeProvidedWithPageAndDurability() {
-        Page page = new Page();
+        Page page = new BasicPage();
         Eraser eraser = new Eraser(10, page);
         assertEquals(eraser.getPage(), page);
         assertEquals(eraser.getDurability(), 10);
