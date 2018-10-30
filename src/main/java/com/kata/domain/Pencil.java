@@ -104,13 +104,6 @@ public class Pencil {
         return this.initialDurability;
     }
 
-    public void sharpen() {
-        if (getLength() > 0) {
-            this.length--;
-            this.durabilityPoint = getInitialDurability();
-        }
-    }
-
     public Eraser getEraser() {
         return this.eraser;
     }

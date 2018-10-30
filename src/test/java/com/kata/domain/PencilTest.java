@@ -108,13 +108,13 @@ public class PencilTest {
 
     public void whenPencilIsSharpenedItsLengthReduceByOne() {
         int oldLength = durablePencil.getLength();
-        durablePencil.sharpen();
+        durablePencil.sharpen(new BasicSharpener(1));
         assertEquals(durablePencil.getLength(), oldLength - 1);
     }
 
     public void whenPencilIsSharpenedWithSharpenerItsLengthReduceByOne() {
         int oldLength = durablePencil.getLength();
-        Sharpener sharpener = new Sharpener(1);
+        Sharpener sharpener = new BasicSharpener(1);
         durablePencil.sharpen(sharpener);
         assertEquals(durablePencil.getLength(), oldLength - 1);
     }
@@ -122,16 +122,17 @@ public class PencilTest {
     public void whenPencilIsSharpenedItRegainsInitialDurability() {
         int oldDurability = durablePencil.getInitialDurability();
         durablePencil.write(BLUE_VALUE);
-        durablePencil.sharpen();
+        durablePencil.sharpen(new BasicSharpener(1));
         assertEquals(durablePencil.getPointDurability(), oldDurability);
     }
 
     public void whenPencilIsSharpenedAndLengthIsZeroItWillNotRegainInitialDurability() {
         Pencil pencil = Pencil.createWithDurabilityAndLength(50, 2);
-        pencil.sharpen();
-        pencil.sharpen();
+        Sharpener sharpener = new BasicSharpener(1);
+        pencil.sharpen(sharpener);
+        pencil.sharpen(sharpener);
         pencil.write(BLUE_VALUE);
-        pencil.sharpen();
+        pencil.sharpen(sharpener);
         assertTrue(pencil.getPointDurability() < 50);
     }
 
