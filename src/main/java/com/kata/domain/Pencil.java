@@ -48,6 +48,9 @@ public class Pencil {
     public String edit(String textToEdit) {
         int editLocation = page.getIndexOfLastErasedCharacter()
                 .orElseThrow(() -> new IllegalStateException("Can't Edit unless text was erased"));
+        if (editLocation + textToEdit.length() > page.getTextContents().length()) {
+            throw new IllegalArgumentException("The text to edit length exceeds the total length of the page text");
+        }
         for (char characterToEdit : textToEdit.toCharArray()) {
             if (canEditText()) {
                 char updatedCharacter = page.editCharacter(characterToEdit, editLocation++);

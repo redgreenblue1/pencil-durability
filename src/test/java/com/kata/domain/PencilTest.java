@@ -197,4 +197,11 @@ public class PencilTest {
         defaultPencil.write(" xy");
         defaultPencil.edit("a");
     }
+
+    @Test(expectedExceptions = IllegalArgumentException.class)
+    public void whenPencilEditTextWithCharactersNumberExceedTheTotalLengthOfTextItThrowsError() {
+        defaultPencil.write("abcd");
+        defaultPencil.erase("c");
+        defaultPencil.edit("This is a too long text");
+    }
 }
