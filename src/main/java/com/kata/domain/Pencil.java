@@ -1,5 +1,8 @@
 package com.kata.domain;
 
+/**
+ * To write, erase, and edit text. It uses a sharper to re-initialize it's durability
+ */
 public interface Pencil {
     void write(String textToWrite);
 

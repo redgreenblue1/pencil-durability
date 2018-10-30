@@ -1,3 +1,6 @@
+import org.gradle.api.tasks.testing.logging.TestExceptionFormat
+import org.gradle.api.tasks.testing.logging.TestLogEvent
+
 plugins {
     id 'java'
     id "jacoco"
@@ -21,9 +24,6 @@ test {
         outputDirectory = file("build/test-results")
         useDefaultListeners = true
     }
-    testLogging {
-        exceptionFormat = 'full'
-    }
 }
 
 dependencies {
@@ -40,5 +40,21 @@ jacocoTestReport {
         csv.enabled false
     }
 }
+
+//To show the tests list and their result. Reference: https://stackoverflow.com/a/36199263
+tasks.withType(Test) {
+    testLogging {
+        events TestLogEvent.FAILED,
+                TestLogEvent.PASSED,
+                TestLogEvent.SKIPPED,
+                TestLogEvent.STANDARD_ERROR,
+                TestLogEvent.STANDARD_OUT
+        exceptionFormat TestExceptionFormat.FULL
+        showCauses true
+        showExceptions true
+        showStackTraces true
+    }
+}
+
 test.finalizedBy jacocoTestReport
 

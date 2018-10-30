@@ -2,6 +2,9 @@ package com.kata.domain;
 
 import java.util.Optional;
 
+/**
+ * Text container to perform operation on it's contents
+ */
 public interface Page {
     String getTextContents();
 
