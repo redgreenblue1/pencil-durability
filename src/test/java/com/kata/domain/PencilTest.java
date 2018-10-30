@@ -112,11 +112,11 @@ public class PencilTest {
         assertEquals(durablePencil.getLength(), oldLength - 1);
     }
 
-    public void whenPencilIsSharpenedWithSharpenerItsLengthReduceByOne() {
+    public void whenPencilIsSharpenedWithSharpenerItsLengthReduceBySharpenerValue() {
         int oldLength = durablePencil.getLength();
-        Sharpener sharpener = new BasicSharpener(1);
+        Sharpener sharpener = new BasicSharpener(2);
         durablePencil.sharpen(sharpener);
-        assertEquals(durablePencil.getLength(), oldLength - 1);
+        assertEquals(durablePencil.getLength(), oldLength - 2);
     }
 
     public void whenPencilIsSharpenedItRegainsInitialDurability() {
