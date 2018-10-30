@@ -20,16 +20,16 @@ public class PencilTest {
     }
 
     public void whenPencilWritesATextItReturnsTheText() {
-        String writtenText = defaultPencil.write("She sells sea shells");
-        assertEquals(writtenText, "She sells sea shells");
+        defaultPencil.write("She sells sea shells");
+        assertEquals(defaultPencil.getPageTextContent(), "She sells sea shells");
     }
 
     public void whenPencilWritesAgainItAppendToOldText() {
         String firstText = "fast";
         defaultPencil.write(firstText);
         String secondText = " tiger";
-        String writtenText = defaultPencil.write(secondText);
-        assertEquals(writtenText, firstText + secondText);
+        defaultPencil.write(secondText);
+        assertEquals(defaultPencil.getPageTextContent(), firstText + secondText);
 
     }
 
@@ -41,8 +41,8 @@ public class PencilTest {
         String firstText = BLUE_VALUE;
         durablePencil.write(firstText);
         String secondText = " Sky";
-        String writtenText = durablePencil.write(secondText);
-        assertEquals(writtenText, firstText + secondText);
+        durablePencil.write(secondText);
+        assertEquals(durablePencil.getPageTextContent(), firstText + secondText);
     }
 
     public void whenPencilWritesLowerCaseLetterThenDurabilityPointReducesByOne() {
@@ -72,17 +72,21 @@ public class PencilTest {
     }
 
     public void whenPencilDurabilityIsNotSufficientItWriteSpacesForEachNextCharacter() {
-        assertEquals(durablePencil.write("aABC DEFG"), "aABC D   ");
+        durablePencil.write("aABC DEFG");
+        assertEquals(durablePencil.getPageTextContent(), "aABC D   ");
     }
 
     public void whenPencilDurabilityIsZeroItWritesSpacesForEachNextCharacter() {
-        assertEquals(durablePencil.write("ABCDEF"), "ABCDE ");
+        durablePencil.write("ABCDEF");
+        assertEquals(durablePencil.getPageTextContent(), "ABCDE ");
     }
 
     public void whenPencilWritesNullItShouldNotWriteAnything() {
-        String oldText = durablePencil.write(BLUE_VALUE);
+        durablePencil.write(BLUE_VALUE);
+        String oldText = durablePencil.getPageTextContent();
         int oldDurability = durablePencil.getPointDurability();
-        assertEquals(durablePencil.write(null), oldText);
+        durablePencil.write(null);
+        assertEquals(durablePencil.getPageTextContent(), oldText);
         assertEquals(durablePencil.getPointDurability(), oldDurability);
     }
 
@@ -171,7 +175,8 @@ public class PencilTest {
     }
 
     public void whenPencilWritersItWriteToItsPage() {
-        String writtenText = defaultPencil.write(BLUE_VALUE);
+        defaultPencil.write(BLUE_VALUE);
+        String writtenText = defaultPencil.getPageTextContent();
         assertEquals(defaultPencil.getPage().getTextContents(), writtenText);
     }
 

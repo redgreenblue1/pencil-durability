@@ -34,15 +34,13 @@ public class Pencil {
         return pencil;
     }
 
-    public String write(String textToWrite) {
+    public void write(String textToWrite) {
         if (textToWrite != null) {
-            char[] inputTextCharacters = textToWrite.toCharArray();
-            for (char inputCharacter : inputTextCharacters) {
+            for (char inputCharacter : textToWrite.toCharArray()) {
                 adjustDurability(inputCharacter);
-                appendText(inputCharacter);
+                appendCharacter(inputCharacter);
             }
         }
-        return page.getTextContents();
     }
 
     public String edit(String textToEdit) {
@@ -87,11 +85,11 @@ public class Pencil {
         return Character.isLowerCase(inputCharacter) || inputCharacter == page.getCollideCharacter();
     }
 
-    protected void appendText(char inputCharacter) {
+    protected void appendCharacter(char inputCharacter) {
         if (canWriteText()) {
-            page.append(inputCharacter);
+            getPage().append(inputCharacter);
         } else {
-            page.append(ONE_SPACE);
+            getPage().append(ONE_SPACE);
         }
     }
 
@@ -125,6 +123,10 @@ public class Pencil {
 
     public Page getPage() {
         return this.page;
+    }
+
+    public String getPageTextContent() {
+        return getPage().getTextContents();
     }
 
 }
