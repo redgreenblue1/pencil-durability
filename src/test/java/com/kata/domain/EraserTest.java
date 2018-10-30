@@ -12,12 +12,12 @@ public class EraserTest {
     private Eraser defaultEraser;
 
     public static Eraser createEraserWithPage(String pageText) {
-        return new Eraser(new BasicPage(pageText));
+        return new BasicEraser(new BasicPage(pageText));
     }
 
     @BeforeMethod
     public void setup() {
-        defaultEraser = new Eraser(new BasicPage());
+        defaultEraser = new BasicEraser(new BasicPage());
     }
 
     public void whenEraserCreatedItHasPositiveDurability() {
@@ -25,7 +25,7 @@ public class EraserTest {
     }
 
     public void whenEraserCreateItCanAcceptDurability() {
-        Eraser eraser = new Eraser(10, new BasicPage());
+        Eraser eraser = new BasicEraser(10, new BasicPage());
         assertEquals(eraser.getDurability(), 10);
     }
 
@@ -53,13 +53,13 @@ public class EraserTest {
     }
 
     public void whenEraserErasesItSkipCharactersWhenDurabilityIsZero() {
-        Eraser eraser = new Eraser(0, new BasicPage("abc"));
+        Eraser eraser = new BasicEraser(0, new BasicPage("abc"));
         String updatedText = eraser.erase("bc");
         assertEquals(updatedText, "abc");
     }
 
     public void whenEraserErasesItEraseFromRightToLeft() {
-        Eraser eraser = new Eraser(2, new BasicPage("abcde"));
+        Eraser eraser = new BasicEraser(2, new BasicPage("abcde"));
         String updatedText = eraser.erase("cde");
         assertEquals(updatedText, "abc  ");
     }
@@ -92,19 +92,19 @@ public class EraserTest {
 
     @Test(expectedExceptions = IllegalArgumentException.class)
     public void whenEraserEraseFromNullTextItReturnsException() {
-        Eraser eraser = new Eraser(null);
+        Eraser eraser = new BasicEraser(null);
         eraser.erase("22");
     }
 
     public void whenEraserCreatedItCanBeProvidedWithPage() {
         Page page = new BasicPage();
-        Eraser eraser = new Eraser(page);
+        Eraser eraser = new BasicEraser(page);
         assertEquals(eraser.getPage(), page);
     }
 
     public void whenEraserCreatedItCanBeProvidedWithPageAndDurability() {
         Page page = new BasicPage();
-        Eraser eraser = new Eraser(10, page);
+        Eraser eraser = new BasicEraser(10, page);
         assertEquals(eraser.getPage(), page);
         assertEquals(eraser.getDurability(), 10);
     }
