@@ -127,4 +127,10 @@ public class Pencil {
         return this.page;
     }
 
+    public void sharpen(Sharpener sharpener) {
+        if (getLength() > 0) {
+            this.length -= sharpener.getReduceLengthBy();
+            this.durabilityPoint = getInitialDurability();
+        }
+    }
 }
