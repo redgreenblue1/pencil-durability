@@ -30,11 +30,4 @@ public class PageTest {
         assertEquals(page.getTextContents(), "ab" + page.getCollideCharacter() + "de");
     }
 
-    public void whenPageEditItWritesCharacterOverIndexOfLastErase() {
-        Page page = new Page("ab de");
-        page.setIndexOfLastErasedCharacter(2);
-        String updatedText = page.edit("XZ");
-        assertEquals(updatedText, String.format("abX%se", page.getCollideCharacter()));
-    }
-
 }
