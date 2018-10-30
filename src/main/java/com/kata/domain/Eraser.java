@@ -28,11 +28,8 @@ public class Eraser {
 
     public String erase(String textToErase) {
         checkArgument(textToErase != null);
-        String pageContent = getPage().getTextContents();
-        Optional<Integer> optionalLastIndexOfTextToErase = getLastIndexOfTextToErase(textToErase, pageContent);
-        if (optionalLastIndexOfTextToErase.isPresent()) {
-            eraseCharacters(textToErase, optionalLastIndexOfTextToErase.get());
-        }
+        Optional<Integer> lastIndexOfTextErase = page.getLastIndexOfTextMatch(textToErase);
+        lastIndexOfTextErase.ifPresent(integer -> eraseCharacters(textToErase, integer));
         return getPage().getTextContents();
     }
 
@@ -55,14 +52,6 @@ public class Eraser {
             this.indexOfLastErasedCharacter = characterIndex;
             getPage().setIndexOfLastErasedCharacter(characterIndex);
         }
-    }
-
-    private Optional<Integer> getLastIndexOfTextToErase(String textToErase, String inputText) {
-        int lastIndexOfTextToErase = inputText.lastIndexOf(textToErase);
-        if (lastIndexOfTextToErase != -1) {
-            return Optional.of(lastIndexOfTextToErase);
-        }
-        return Optional.empty();
     }
 
     protected boolean eraseCharacter(int eraseIndex) {

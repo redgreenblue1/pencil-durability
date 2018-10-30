@@ -53,6 +53,14 @@ public class Page {
         content.setCharAt(eraseIndex, replacingCharacter);
     }
 
+    public Optional<Integer> getLastIndexOfTextMatch(String textToMatch) {
+        int lastIndexOfMatch = content.lastIndexOf(textToMatch);
+        if (lastIndexOfMatch != -1) {
+            return Optional.of(lastIndexOfMatch);
+        }
+        return Optional.empty();
+    }
+
     protected boolean isCharacterCollide(int indexToEdit) {
         return !Character.isWhitespace(content.charAt(indexToEdit));
     }
