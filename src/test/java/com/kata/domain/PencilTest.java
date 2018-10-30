@@ -3,7 +3,6 @@ package com.kata.domain;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import static com.kata.domain.Pencil.DEFAULT_LENGTH;
 import static org.testng.Assert.*;
 
 @Test
@@ -15,8 +14,8 @@ public class PencilTest {
 
     @BeforeMethod
     public void setup() {
-        this.defaultPencil = Pencil.createDefault();
-        this.durablePencil = Pencil.createWithDurability(INITIAL_DURABILITY);
+        this.defaultPencil = BasicPencil.createDefault();
+        this.durablePencil = BasicPencil.createWithDurability(INITIAL_DURABILITY);
     }
 
     public void whenPencilWritesATextItReturnsTheText() {
@@ -67,7 +66,7 @@ public class PencilTest {
     }
 
     public void whenPencilIsCreatedItHasNonZeroDefaultDurabilityPointValue() {
-        Pencil defaultPencil = Pencil.createDefault();
+        Pencil defaultPencil = BasicPencil.createDefault();
         assertEquals(defaultPencil.getPointDurability(), 500);
     }
 
@@ -91,13 +90,13 @@ public class PencilTest {
     }
 
     public void whenPencilCreatedItShouldAcceptDurabilityAndLength() {
-        Pencil pencil = Pencil.createWithDurabilityAndLength(15, 3);
+        Pencil pencil = BasicPencil.createWithDurabilityAndLength(15, 3);
         assertEquals(pencil.getPointDurability(), 15);
         assertEquals(pencil.getLength(), 3);
     }
 
     public void whenPencilCreatedItShouldHaveDefaultLengthIfNotSpecified() {
-        assertEquals(defaultPencil.getLength(), DEFAULT_LENGTH);
+        assertTrue(defaultPencil.getLength() > 0);
     }
 
     public void whenPencilAskedToReturnInitialDurabilityItShouldReturnIt() {
@@ -131,7 +130,7 @@ public class PencilTest {
     }
 
     public void whenPencilIsSharpenedAndLengthIsZeroItWillNotRegainInitialDurability() {
-        Pencil pencil = Pencil.createWithDurabilityAndLength(50, 2);
+        Pencil pencil = BasicPencil.createWithDurabilityAndLength(50, 2);
         Sharpener sharpener = new BasicSharpener(1);
         pencil.sharpen(sharpener);
         pencil.sharpen(sharpener);
@@ -141,7 +140,7 @@ public class PencilTest {
     }
 
     public void whenPencilIsSharpenItWillNotSharpenIfSharperReduceLengthIsMoreThanPencilLength() {
-        Pencil pencil = Pencil.createWithDurabilityAndLength(10, 5);
+        Pencil pencil = BasicPencil.createWithDurabilityAndLength(10, 5);
         int reduceLengthBy = 2;
         Sharpener sharpener = new BasicSharpener(reduceLengthBy);
         pencil.sharpen(sharpener);
@@ -188,13 +187,13 @@ public class PencilTest {
     }
 
     public void whenPencilWritesCollideCharacterItReducesDurabilityByOne() {
-        Pencil pencil = Pencil.createWithDurability(10);
+        Pencil pencil = BasicPencil.createWithDurability(10);
         pencil.write("ab@");
         assertEquals(pencil.getPointDurability(), 10 - 3);
     }
 
     public void whenPencilEditsWithCollideCharacterItReducesDurabilityByOne() {
-        Pencil pencil = Pencil.createWithDurability(10);
+        Pencil pencil = BasicPencil.createWithDurability(10);
         pencil.write("abc");
         pencil.erase("a");
         pencil.edit("zx");
@@ -203,7 +202,7 @@ public class PencilTest {
     }
 
     public void whenPencilEditsWithZeroDurabilityItLeaveCharactersAsIs() {
-        Pencil pencil = Pencil.createWithDurability(4);
+        Pencil pencil = BasicPencil.createWithDurability(4);
         pencil.write("abc");
         pencil.erase("ab");
         pencil.edit("zxy");
