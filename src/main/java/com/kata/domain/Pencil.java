@@ -61,7 +61,7 @@ public class Pencil {
     }
 
     public void sharpen(Sharpener sharpener) {
-        if (getLength() > 0) {
+        if (getLength() >= sharpener.getReduceLengthBy()) {
             this.length -= sharpener.getReduceLengthBy();
             this.durabilityPoint = getInitialDurability();
         }

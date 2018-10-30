@@ -8,8 +8,8 @@ import static org.testng.Assert.*;
 
 @Test
 public class PencilTest {
-    private static final int INITIAL_DURABILITY = 10;
     public static final String BLUE_VALUE = "blue";
+    private static final int INITIAL_DURABILITY = 10;
     private Pencil defaultPencil;
     private Pencil durablePencil;
 
@@ -134,6 +134,18 @@ public class PencilTest {
         pencil.write(BLUE_VALUE);
         pencil.sharpen(sharpener);
         assertTrue(pencil.getPointDurability() < 50);
+    }
+
+    public void whenPencilIsSharpenItWillNotSharpenIfSharperReduceLengthIsMoreThanPencilLength() {
+        Pencil pencil = Pencil.createWithDurabilityAndLength(10, 5);
+        int reduceLengthBy = 2;
+        Sharpener sharpener = new BasicSharpener(reduceLengthBy);
+        pencil.sharpen(sharpener);
+        assertEquals(pencil.getLength(), 5 - reduceLengthBy);
+        pencil.sharpen(sharpener);
+        assertEquals(pencil.getLength(), 5 - reduceLengthBy - reduceLengthBy);
+        pencil.sharpen(sharpener);
+        assertEquals(pencil.getLength(), 5 - reduceLengthBy - reduceLengthBy);
     }
 
     public void whenPencilCreatedItShouldHaveEraser() {
