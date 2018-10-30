@@ -28,31 +28,32 @@ public class Eraser {
 
     public String erase(String textToErase) {
         checkArgument(textToErase != null);
-        String inputText = getPage().getTextContents();
-        Optional<Integer> optionalLastIndexOfTextToErase = getLastIndexOfTextToErase(textToErase, inputText);
+        String pageContent = getPage().getTextContents();
+        Optional<Integer> optionalLastIndexOfTextToErase = getLastIndexOfTextToErase(textToErase, pageContent);
         if (optionalLastIndexOfTextToErase.isPresent()) {
-            inputText = eraseCharacters(textToErase, inputText, optionalLastIndexOfTextToErase.get());
-            getPage().setContent(inputText);
+            eraseCharacters(textToErase, optionalLastIndexOfTextToErase.get());
         }
-        return inputText;
+        return getPage().getTextContents();
     }
 
-    private String eraseCharacters(String textToErase, String inputText, int lastIndexOfTextToErase) {
-        char[] inputTextCharacters = inputText.toCharArray();
-        int firstIndexOfTextToErase = lastIndexOfTextToErase + textToErase.length() - 1;
+    private void eraseCharacters(String textToErase, int lastIndexOfTextToErase) {
+        int firstIndexOfTextToErase = getFirstIndexOfTextToErase(textToErase, lastIndexOfTextToErase);
         for (int i = firstIndexOfTextToErase; i >= lastIndexOfTextToErase; i--) {
-            updateLastIndexOfErase(inputTextCharacters[i], i);
-            if (eraseCharacter(inputTextCharacters, i)) {
+            updateLastIndexOfErase(getPage().getCharacterAt(i), i);
+            if (eraseCharacter(i)) {
                 updateDurability();
             }
         }
-        return String.valueOf(page.getTextContents());
     }
 
-    private void updateLastIndexOfErase(char inputTextCharacter, int i) {
+    private int getFirstIndexOfTextToErase(String textToErase, int lastIndexOfTextToErase) {
+        return lastIndexOfTextToErase + textToErase.length() - 1;
+    }
+
+    private void updateLastIndexOfErase(char inputTextCharacter, int characterIndex) {
         if (canBeAssignedAsLastIndexOfErase(inputTextCharacter)) {
-            this.indexOfLastErasedCharacter = i;
-            getPage().setIndexOfLastErasedCharacter(i);
+            this.indexOfLastErasedCharacter = characterIndex;
+            getPage().setIndexOfLastErasedCharacter(characterIndex);
         }
     }
 
@@ -64,9 +65,9 @@ public class Eraser {
         return Optional.empty();
     }
 
-    protected boolean eraseCharacter(char[] inputTextCharacters, int i) {
-        if (canErase(inputTextCharacters[i])) {
-            getPage().replaceCharacterAt(i, getEraseCharacterToReplaceWith());
+    protected boolean eraseCharacter(int eraseIndex) {
+        if (canErase(getPage().getCharacterAt(eraseIndex))) {
+            getPage().replaceCharacterAt(eraseIndex, getEraseCharacterToReplaceWith());
             return true;
         }
         return false;

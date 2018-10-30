@@ -60,4 +60,8 @@ public class Page {
     protected char getCollideCharacter() {
         return COLLIDE_CHARACTER;
     }
+
+    public char getCharacterAt(int index) {
+        return content.charAt(index);
+    }
 }
