@@ -183,8 +183,8 @@ public class PencilTest {
     public void whenPencilEditItWritesCharacterStartingFromLastEraseIndex() {
         defaultPencil.write("An apple a day keeps the doctor away");
         defaultPencil.erase("apple");
-        String updatedText = defaultPencil.edit("artichoke");
-        assertEquals(updatedText, "An artich@k@ay keeps the doctor away");
+        defaultPencil.edit("artichoke");
+        assertEquals(defaultPencil.getPageTextContent(), "An artich@k@ay keeps the doctor away");
     }
 
     public void whenPencilWritesCollideCharacterItReducesDurabilityByOne() {
@@ -197,7 +197,8 @@ public class PencilTest {
         Pencil pencil = Pencil.createWithDurability(10);
         pencil.write("abc");
         pencil.erase("a");
-        assertEquals(pencil.edit("zx"), "z@c");
+        pencil.edit("zx");
+        assertEquals(pencil.getPageTextContent(), "z@c");
         assertEquals(pencil.getPointDurability(), 10 - 5);
     }
 
@@ -205,7 +206,8 @@ public class PencilTest {
         Pencil pencil = Pencil.createWithDurability(4);
         pencil.write("abc");
         pencil.erase("ab");
-        assertEquals(pencil.edit("zxy"), "z c");
+        pencil.edit("zxy");
+        assertEquals(pencil.getPageTextContent(), "z c");
     }
 
     @Test(expectedExceptions = IllegalStateException.class)

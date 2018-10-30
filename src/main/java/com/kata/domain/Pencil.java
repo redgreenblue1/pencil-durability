@@ -3,9 +3,9 @@ package com.kata.domain;
 public class Pencil {
 
 
-    public static final char ONE_SPACE = ' ';
-    public static final int DEFAULT_DURABILITY_POINT = 500;
-    public static final int DEFAULT_LENGTH = 4;
+    static final int DEFAULT_LENGTH = 4;
+    private static final char ONE_SPACE = ' ';
+    private static final int DEFAULT_DURABILITY_POINT = 500;
     private int durabilityPoint;
     private Page page;
     private int length;
@@ -43,19 +43,27 @@ public class Pencil {
         }
     }
 
-    public String edit(String textToEdit) {
-        int editLocation = page.getIndexOfLastErasedCharacter()
-                .orElseThrow(() -> new IllegalStateException("Can't Edit unless text was erased"));
-        if (editLocation + textToEdit.length() > page.getTextContents().length()) {
-            throw new IllegalArgumentException("The text to edit length exceeds the total length of the page text");
-        }
+    public void edit(String textToEdit) {
+        int editStartIndex = getEditStartIndex(textToEdit);
         for (char characterToEdit : textToEdit.toCharArray()) {
             if (canEditText()) {
-                char updatedCharacter = page.editCharacterAt(characterToEdit, editLocation++);
+                char updatedCharacter = getPage().editCharacterAt(characterToEdit, editStartIndex++);
                 adjustDurability(updatedCharacter);
             }
         }
-        return getPage().getTextContents();
+    }
+
+    private int getEditStartIndex(String textToEdit) {
+        int editLocation = getPage().getIndexOfLastErasedCharacter()
+                .orElseThrow(() -> new IllegalStateException("Can't Edit unless text was erased"));
+        if (isEditTextOverflowPageText(textToEdit, editLocation)) {
+            throw new IllegalArgumentException("The text to edit length exceeds the total length of the page text");
+        }
+        return editLocation;
+    }
+
+    private boolean isEditTextOverflowPageText(String textToEdit, int editLocation) {
+        return editLocation + textToEdit.length() > getPage().getTextContents().length();
     }
 
     public void sharpen(Sharpener sharpener) {
@@ -82,7 +90,7 @@ public class Pencil {
     }
 
     protected boolean isReduceDurabilityByOne(char inputCharacter) {
-        return Character.isLowerCase(inputCharacter) || inputCharacter == page.getCollideCharacter();
+        return Character.isLowerCase(inputCharacter) || inputCharacter == getPage().getCollideCharacter();
     }
 
     protected void appendCharacter(char inputCharacter) {
